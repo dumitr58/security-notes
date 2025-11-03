@@ -25,6 +25,10 @@ Break things! Understand them! Get better!
 * Tinkerer: smart mirror, Pwnagotchi Wi‑Fi sniffer, custom home servers and IoT projects
 * UI/UX designer who enjoys creating custom clothing and mousepad designs
 
+## <mark style="color:$primary;">Portfolio / Code</mark>
+
+{% embed url="https://github.com/dumitr58" %}
+
 ## <mark style="color:$primary;">Websites</mark>
 
 My brand
