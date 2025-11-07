@@ -33,6 +33,7 @@
     * [Devvortex - Easy](hack-the-box/linux/devvortex-easy.md)
     * [Dog - Easy](hack-the-box/linux/dog-easy.md)
     * [Editor - Easy](hack-the-box/linux/editor-easy.md)
+    * [Editorial - Easy](hack-the-box/linux/editorial-easy.md)
   * [Windows](hack-the-box/windows/README.md)
     * [Access - Easy](hack-the-box/windows/access-easy.md)
     * [Aero - Medium - TBF](hack-the-box/windows/aero-medium-tbf.md)

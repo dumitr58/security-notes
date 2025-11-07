@@ -9,6 +9,7 @@ icon: ubuntu
 Nmap scan:
 
 ```bash
+## Nmap TCP
 nmap -A -T4 -p- -Pn 10.10.11.80 -oN scans/nmap-tcpall
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-11-06 12:25 EST
 Nmap scan report for 10.10.11.80
