@@ -41,6 +41,7 @@
     * [Jeeves - Medium](hack-the-box/windows/jeeves-medium.md)
     * [Bounty - Easy - TBF](hack-the-box/windows/bounty-easy-tbf.md)
     * [Buff - Easy](hack-the-box/windows/buff-easy.md)
+    * [Chatterbox - Medium](hack-the-box/windows/chatterbox-medium.md)
 * [Proving Grounds Practice](proving-grounds-practice/README.md)
   * [Active Directory](proving-grounds-practice/active-directory/README.md)
     * [Access - Intermediate](proving-grounds-practice/active-directory/access-intermediate.md)

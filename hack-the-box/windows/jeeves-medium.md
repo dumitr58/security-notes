@@ -4,6 +4,8 @@ icon: windows
 
 # Jeeves - Medium
 
+<figure><img src="../../.gitbook/assets/image.png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/jeeves"><strong>Jeeves</strong></a></p></figcaption></figure>
+
 ## <mark style="color:blue;">Gaining Access</mark>
 
 Nmap scan:
@@ -190,3 +192,4 @@ impacket-psexec -hashes aad3b435b51404eeaad3b435b51404ee:e0fb1fb85756c24235ff238
 {% endcode %}
 
 <figure><img src="../../.gitbook/assets/image (2703).png" alt=""><figcaption></figcaption></figure>
+

