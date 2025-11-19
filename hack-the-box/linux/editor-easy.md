@@ -66,13 +66,13 @@ Upon visiting the site we are meet with a redirect, let's add it to our hosts fi
 10.10.11.80 	editor.htb
 ```
 
-<figure><img src="../../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Further inspecting the site does not reveal anything of interest. Let's take a quick peek at port 8080 as well
 
 ### <mark style="color:$primary;">XWiki RCE versions 15.10.11, 16.4.1 & 16.5.0RC1</mark>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 There is a version at the bottom of the site!
 
