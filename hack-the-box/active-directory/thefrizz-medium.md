@@ -135,8 +135,7 @@ There is a mysql executable located in xampp I will make use of it to iterate ov
 
 <figure><img src="../../.gitbook/assets/image (227).png" alt=""><figcaption></figcaption></figure>
 
-Use the below command to enumerate over the tables:\
-
+Use the below command to enumerate over the tables:<br>
 
 {% code overflow="wrap" %}
 ```powershell

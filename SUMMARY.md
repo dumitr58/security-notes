@@ -44,6 +44,7 @@
     * [Chatterbox - Medium](hack-the-box/windows/chatterbox-medium.md)
     * [Giddy - Medium](hack-the-box/windows/giddy-medium.md)
     * [Heist - Easy](hack-the-box/windows/heist-easy.md)
+    * [Intelligence - Medium](hack-the-box/windows/intelligence-medium.md)
 * [Proving Grounds Practice](proving-grounds-practice/README.md)
   * [Active Directory](proving-grounds-practice/active-directory/README.md)
     * [Access - Intermediate](proving-grounds-practice/active-directory/access-intermediate.md)
