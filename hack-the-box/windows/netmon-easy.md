@@ -109,7 +109,7 @@ Found an interesting Directory named PRTG Network Monitor. And since the box is 
 
 <figure><img src="../../.gitbook/assets/image (2905).png" alt=""><figcaption></figcaption></figure>
 
-Looking through the files I managed to find a set of credentials.
+Looking through the files I managed to find a set of credentials `PRTG Configuration.old.bak`
 
 We can try these creds on the website
 
@@ -118,6 +118,8 @@ prtgadmin:PrTg@dmin2019
 ```
 
 We had to increment the number at the end to 2019 and we got login!
+
+### <mark style="color:$primary;">PRTG < 18.2.39 OS Command Injection</mark>
 
 <figure><img src="../../.gitbook/assets/image (2907).png" alt=""><figcaption></figcaption></figure>
 
