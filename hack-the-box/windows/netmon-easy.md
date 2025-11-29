@@ -133,8 +133,6 @@ The command injection is in the parameters field of the notifications configurat
 
 <mark style="color:green;">**Setup -> Account Settings -> Notifications**</mark>
 
-<figure><img src="../../.gitbook/assets/image (2908).png" alt=""><figcaption></figcaption></figure>
-
 <figure><img src="../../.gitbook/assets/image (2909).png" alt=""><figcaption></figcaption></figure>
 
 On the Right side there is a <mark style="color:green;">**plus button**</mark> click it then "<mark style="color:green;">**Add new notification**</mark>". <mark style="color:green;">**Leave everything else as is**</mark>, scroll down to the bottom and select "<mark style="color:green;">**Execute Program**</mark>". For the program File select <mark style="color:green;">**demo.ps1**</mark> then type the following in the parameter field:

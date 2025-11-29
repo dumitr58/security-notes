@@ -49,6 +49,7 @@
     * [Mailing - Easy](hack-the-box/windows/mailing-easy.md)
     * [Manager - Medium](hack-the-box/windows/manager-medium.md)
     * [Netmon - Easy](hack-the-box/windows/netmon-easy.md)
+    * [Querier - Medium](hack-the-box/windows/querier-medium.md)
 * [Proving Grounds Practice](proving-grounds-practice/README.md)
   * [Active Directory](proving-grounds-practice/active-directory/README.md)
     * [Access - Intermediate](proving-grounds-practice/active-directory/access-intermediate.md)
