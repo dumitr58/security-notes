@@ -51,6 +51,7 @@
     * [Netmon - Easy](hack-the-box/windows/netmon-easy.md)
     * [Querier - Medium](hack-the-box/windows/querier-medium.md)
     * [Remote - Easy](hack-the-box/windows/remote-easy.md)
+    * [SecNotes - Medium](hack-the-box/windows/secnotes-medium.md)
 * [Proving Grounds Practice](proving-grounds-practice/README.md)
   * [Active Directory](proving-grounds-practice/active-directory/README.md)
     * [Access - Intermediate](proving-grounds-practice/active-directory/access-intermediate.md)
