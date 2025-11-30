@@ -53,6 +53,7 @@
     * [Remote - Easy](hack-the-box/windows/remote-easy.md)
     * [SecNotes - Medium](hack-the-box/windows/secnotes-medium.md)
     * [ServMon - Easy](hack-the-box/windows/servmon-easy.md)
+    * [StreamIO - Medium](hack-the-box/windows/streamio-medium.md)
 * [Proving Grounds Practice](proving-grounds-practice/README.md)
   * [Active Directory](proving-grounds-practice/active-directory/README.md)
     * [Access - Intermediate](proving-grounds-practice/active-directory/access-intermediate.md)
@@ -168,3 +169,4 @@
     * [Amaterasu - Easy TBC](proving-grounds-play/linux/amaterasu-easy-tbc.md)
 * [Projects](projects/README.md)
   * [MSSQL File Uploader & Decode Helper](projects/mssql-file-uploader-and-decode-helper.md)
+* [Page 1](page-1.md)

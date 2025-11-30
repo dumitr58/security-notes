@@ -4,7 +4,7 @@ icon: windows
 
 # ServMon - Easy
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/servmon"><strong>ServMon</strong></a></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/servmon"><strong>ServMon</strong></a></p></figcaption></figure>
 
 ## <mark style="color:blue;">Gaining Access</mark>
 
@@ -193,7 +193,7 @@ We know that there is a Password.txt file on Nathan's Desktop!&#x20;
 
 ### <mark style="color:$primary;">HTTP Port 80 TCP</mark>
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Visiting the site we see NVMS-1000. Let's see if there are any exploits available for it.
 

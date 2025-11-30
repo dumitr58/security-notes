@@ -74,7 +74,7 @@ This is a default Microsoft IIS page! Nothing else here so i will move on
 
 ### <mark style="color:$primary;">HTTP Port 80 TCP</mark>
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Visiting the site we are redirected to `/login.php` , let's register an account and login!
 
