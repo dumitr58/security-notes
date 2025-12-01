@@ -79,13 +79,13 @@ HOP RTT      ADDRESS
 
 ### <mark style="color:$primary;">HTTP 80 TCP</mark>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Couple of references to Umbraco, but not  much else on the site. By default Umbraco has it's admin panel page located at `/Umbraco` . And it is the case here as well
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 FTP and SMB have nothing for us. The one port that stands out the most is 2049 mountd NFS&#x20;
 
@@ -95,7 +95,7 @@ FTP and SMB have nothing for us. The one port that stands out the most is 2049 m
 showmount -e 10.10.10.180
 ```
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 There appears to be a mounted share here that is visible by everyone!
 
@@ -105,17 +105,17 @@ I'll mount it to `/mnt/mount` on my machine
 sudo mount -t nfs -o nolock 10.10.10.180:/site_backups /mnt/mount
 ```
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now I have access to the backup of the web directory:
 
-<figure><img src="../../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Found an `.sdf` file in App\_data. `.sdf` files are standard database format files. Running strings on the file seems to do the trick as it unveils an admin user and his hash!
 
-<figure><img src="../../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```shellscript
 admin@htb.local:b8be16afba8c314ad33d812f22a04991b90e2aaa
@@ -123,7 +123,7 @@ admin@htb.local:b8be16afba8c314ad33d812f22a04991b90e2aaa
 
 Crackstation managed to crack it right away:
 
-<figure><img src="../../.gitbook/assets/image (9) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```shellscript
 admin@htb.local:baconandcheese
@@ -133,7 +133,7 @@ These credentials work on the Umbraco Admin panel!
 
 ### <mark style="color:$primary;">Umbraco CMS 7.12.4 Authenticatd RCE</mark>
 
-<figure><img src="../../.gitbook/assets/image (10) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Clicking on the ? we get the version of Umbraco. A quick goolge search reveals an RCE POC on github
 
@@ -153,7 +153,7 @@ python exploit.py -u admin@htb.local -p baconandcheese -i 'http://10.10.10.180' 
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (11) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Nice it works, now let's get a shell on the system I'll download nc64.exe to the target machine and run it to get a shell.
 
