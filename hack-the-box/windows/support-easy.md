@@ -75,7 +75,7 @@ nmap scan reveals the domain support.htb. I'll add it to my hosts file
 netexec smb support.htb -u guest -p '' --shares
 ```
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 smb reveals an interesting share we have read access to. Let's take a look at it&#x20;
 

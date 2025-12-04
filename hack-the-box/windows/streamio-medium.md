@@ -174,7 +174,7 @@ test' union select 1,2,3,4,5,6;-- -
 test' union select 1,@@version,3,4,5,6;-- -
 ```
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:yellow;">Grabbing NTLMv2 Hash</mark>
 

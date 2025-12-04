@@ -38,6 +38,7 @@
     * [Irked - Easy](hack-the-box/linux/irked-easy.md)
     * [Intentions - Hard](hack-the-box/linux/intentions-hard.md)
     * [Keeper - Easy](hack-the-box/linux/keeper-easy.md)
+    * [LinkVortex - Easy](hack-the-box/linux/linkvortex-easy.md)
   * [Windows](hack-the-box/windows/README.md)
     * [Access - Easy](hack-the-box/windows/access-easy.md)
     * [Aero - Medium - TBF](hack-the-box/windows/aero-medium-tbf.md)

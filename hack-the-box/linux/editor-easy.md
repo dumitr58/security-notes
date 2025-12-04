@@ -72,7 +72,7 @@ Further inspecting the site does not reveal anything of interest. Let's take a q
 
 ### <mark style="color:$primary;">XWiki RCE versions 15.10.11, 16.4.1 & 16.5.0RC1</mark>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 There is a version at the bottom of the site!
 
