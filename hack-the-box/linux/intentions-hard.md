@@ -4,7 +4,7 @@ icon: ubuntu
 
 # Intentions - Hard
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="75"><figcaption><p>Y<a href="https://www.hackthebox.com/machines/intentions"><strong>Intentions</strong></a></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (20).png" alt="" width="75"><figcaption><p>Y<a href="https://www.hackthebox.com/machines/intentions"><strong>Intentions</strong></a></p></figcaption></figure>
 
 ## <mark style="color:blue;">Gaining Access</mark>
 
@@ -35,31 +35,31 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 ### <mark style="color:$primary;">HTTP Port 80 TCP</mark>
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 I'll register an account and login
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 There is a welcome message on logging in, the Gallery tab contains images with classified by genres
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="color:$primary;">**Your Feed**</mark> shows the same pictures filtered by the genres set on my profile
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 Changing the genres and click update will reflect in the images shown in the feed
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 The HTTP response headers contains 2 cookies `XSRF-TOKEN` and `intentions_session`, this format is usually seen in LARAVEL PHP Frameworks. Visiting a nonexistant page will see the Laravel Specific 404 message
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 Looking at HTML souce, I saw two interesting includes
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 Both files are heavily obfuscated it's worth directory busting the /js endpoint for .js extensions&#x20;
 
@@ -69,11 +69,11 @@ Both files are heavily obfuscated it's worth directory busting the /js endpoint 
 feroxbuster -u http://10.10.11.220/js -x js
 ```
 
-<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 there is an admin.js file! Let's check it out
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 At the very bottom there is some text:
 
@@ -89,7 +89,7 @@ At the very bottom there is some text:
 
 We learn that there’s a user named `greg`, there’s a version 2 API that is functioning in the `admin` section and passwords are hashed with `BCrypt`
 
-<figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 Also at the bottom there is a reference to imagick.php
 

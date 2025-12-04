@@ -75,7 +75,7 @@ nmap scan reveals the domain support.htb. I'll add it to my hosts file
 netexec smb support.htb -u guest -p '' --shares
 ```
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 smb reveals an interesting share we have read access to. Let's take a look at it&#x20;
 
@@ -83,17 +83,17 @@ smb reveals an interesting share we have read access to. Let's take a look at it
 smbclient \\\\support.htb\\support-tools -N
 ```
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Most of these are default support tools. The one that stands out is UserInfo.exe.zip. I'll download it to my machine and take a look at it
 
 ### <mark style="color:$primary;">UserInfo.exe</mark>
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 I'll unzip it into a folder and take a look at the .exe file
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 I'll transfer the zip file to a Windows Machine and play with it there.
 
@@ -140,7 +140,7 @@ PS > .\UserInfo.exe user -username deimos
 
 I'll open up Wireshark and run the command again
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 It's looking for support.htb
 
@@ -211,7 +211,7 @@ I’ll look at the binary to locate credentials. I’ll open `UserInfo.exe` in D
 
 4\) The selected assembly will be available in the Assembly explorer part
 
-<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 `LdapQuery` seems like a good place to start. There are two functions, `printUser` and `query`, which likely match up with the two commands. The constructor is most interesting
 
@@ -278,11 +278,11 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 Another way we could have done this was by using wireshark. Run the binary and capture the authentication step int the LDAP stream
 
-<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 This can also be viewed in the packet that Wireshark labels as <mark style="color:$primary;">**bindRequest**</mark>
 
-<figure><img src="../../.gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% code overflow="wrap" %}
 ```shellscript
@@ -290,7 +290,7 @@ netexec smb support.htb -u ldap -p 'nvEfEK16^1aM4$e7AclUf8x$tRWxPWO1%lmz'
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 These creds work. I will do bloodhound collection next and take a look.
 
@@ -310,13 +310,13 @@ ldapsearch -x -H ldap://10.10.11.174 -D 'ldap@support.htb' -w 'nvEfEK16^1aM4$e7A
 
 Going through the LDAP dump I saw what looked like a password in the info field of the support user
 
-<figure><img src="../../.gitbook/assets/image (11) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```shellscript
 netexec winrm support.htb -u support -p 'Ironside47pleasure40Watchful'
 ```
 
-<figure><img src="../../.gitbook/assets/image (12) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (12) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Nice we have winrm access as the support user
 
@@ -324,7 +324,7 @@ Nice we have winrm access as the support user
 evil-winrm -i support.htb -u support -p 'Ironside47pleasure40Watchful'
 ```
 
-<figure><img src="../../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (13) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## <mark style="color:blue;">Privilege Escalation</mark>
 
@@ -336,13 +336,13 @@ netexec ldap support.htb -u ldap -p 'nvEfEK16^1aM4$e7AclUf8x$tRWxPWO1%lmz' --blo
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (10) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:yellow;">Support User -> Group Delegated Object Control</mark>
 
-<figure><img src="../../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (14) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (15) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 support is a member of the <mark style="color:$primary;">Shared Support Accounts</mark> group that has <mark style="color:$primary;">GenericAll</mark> on the computer object <mark style="color:$primary;">DC.SUPPORT.HTB</mark>
 
@@ -356,11 +356,11 @@ I’ll need three scripts to complete this attack
 
 I’ll upload these and import the two PowerShell scripts into my session
 
-<figure><img src="../../.gitbook/assets/image (18) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (18) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Next I will need to know the administrator on DC
 
-<figure><img src="../../.gitbook/assets/image (17) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (17) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Bloodhound tells me it's administrator@support.htb
 
@@ -372,7 +372,7 @@ Get-DomainObject -Identity 'DC=SUPPORT,DC=HTB' | select ms-ds-machineaccountquot
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (19) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (19) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The quote is set to the default of 10, which is good.
 
@@ -382,7 +382,7 @@ I’ll also need to make sure there’s a 2012+ DC in the environment
 Get-DomainController | select name,osversion | fl
 ```
 
-<figure><img src="../../.gitbook/assets/image (20) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (20) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 2022 Standard is great.
 
