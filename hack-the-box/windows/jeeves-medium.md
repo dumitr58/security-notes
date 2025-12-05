@@ -4,7 +4,7 @@ icon: windows
 
 # Jeeves - Medium
 
-<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/jeeves"><strong>Jeeves</strong></a></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/jeeves"><strong>Jeeves</strong></a></p></figcaption></figure>
 
 ## <mark style="color:blue;">Gaining Access</mark>
 

