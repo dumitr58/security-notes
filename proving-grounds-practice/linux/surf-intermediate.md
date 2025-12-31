@@ -85,6 +85,8 @@ I'll replace the cookie and the console and try to login again with admin:admin 
 
 <figure><img src="../../.gitbook/assets/image (2530).png" alt=""><figcaption></figcaption></figure>
 
+### <mark style="color:$primary;">SSRF → phpfusion RCE</mark>
+
 <figure><img src="../../.gitbook/assets/image (2531).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image (2532).png" alt=""><figcaption></figcaption></figure>
