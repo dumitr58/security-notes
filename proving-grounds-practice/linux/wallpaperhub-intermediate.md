@@ -71,7 +71,19 @@ Now when we download the file we see it's the /etc/passwd file
 
 <figure><img src="../../.gitbook/assets/image (532).png" alt=""><figcaption></figcaption></figure>
 
-wp\_hub is the user I am going to target. I am going to try and download the wallpaper\_hub database
+wp\_hub is the user I am going to target let's check his bash history.&#x20;
+
+```swift
+../../../../../../home/wp_hub/.bash_history
+```
+
+<figure><img src="../../.gitbook/assets/image (3070).png" alt=""><figcaption></figcaption></figure>
+
+Now download the file again the same way and let's check it out
+
+<figure><img src="../../.gitbook/assets/image (3071).png" alt=""><figcaption></figcaption></figure>
+
+The bash history has only one database file! I am going to try and download the wallpaper\_hub database
 
 ```
 ../../../../../../home/wp_hub/wallpaper_hub/database.db
