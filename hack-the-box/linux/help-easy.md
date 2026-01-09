@@ -47,11 +47,11 @@ HOP RTT      ADDRESS
 
 This port Hosts an API, we see a message about geting credentials with the correct query
 
-<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The first thing I like to check when I see an endpoint like this is for graphql
 
-<figure><img src="../../.gitbook/assets/image (10) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 $This is graphql nice!
 
@@ -67,7 +67,7 @@ curl -s help.htb:3000/graphql -H "Content-Type: application/json" -d '{ "query":
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (11) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Next let's get the types of User, String ...
 
@@ -77,7 +77,7 @@ curl -s help.htb:3000/graphql -H "Content-Type: application/json" -d '{ "query":
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (12) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (12) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 I’ll get the fields associated with the User type
 
@@ -87,7 +87,7 @@ curl -s help.htb:3000/graphql -H "Content-Type: application/json" -d '{ "query":
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (13) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (13) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 try to get the values
 
@@ -97,7 +97,7 @@ curl -s help.htb:3000/graphql -H "Content-Type: application/json" -d '{ "query":
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (14) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (14) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 it did not like capital User, let's fix that
 
@@ -107,11 +107,11 @@ curl -s help.htb:3000/graphql -H "Content-Type: application/json" -d '{ "query":
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (15) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (15) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 we got a username and an md5 hash. Crackstation takes care of it
 
-<figure><img src="../../.gitbook/assets/image (16) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (16) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 I think we got what we needed here, let's check out port 80
 
@@ -119,7 +119,7 @@ I think we got what we needed here, let's check out port 80
 
 We get a redirect to help.htb so add that to your hosts file
 
-<figure><img src="../../.gitbook/assets/image (17) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (17) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We get redirected to a default apache page, I'll do some directory busting
 
@@ -129,11 +129,11 @@ We get redirected to a default apache page, I'll do some directory busting
 feroxbuster -u http://help.htb
 ```
 
-<figure><img src="../../.gitbook/assets/image (18) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (18) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 feroxbuster discovers an interesting endpoint support.
 
-<figure><img src="../../.gitbook/assets/image (19) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (19) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 I am able to login using the creds we discovered earlier on Graphql
 
@@ -145,7 +145,7 @@ helpme@helpme.com:godhelpmeplz
 
 [**HelpDeskz**](https://github.com/helpdesk-z/helpdeskz-dev) is an open source helpdesk software. Checking out [**github**](https://github.com/helpdesk-z/helpdeskz-dev) there is a readme.html file in the root directory
 
-<figure><img src="../../.gitbook/assets/image (20) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (20) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 A quick searchsploit reveals a Arbitrary File Upload Vulnerability for this version.
 
@@ -169,7 +169,7 @@ With the naming scheme now understood, it became clear why our earlier test uplo
 
 now that we have the timestamp let's open up php and get the md5 hash
 
-<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Picture does not correspond because this took a couple of tries so I named my shell differently. Now curl this link and you should have a shell on your designated listener
 
@@ -177,13 +177,13 @@ Picture does not correspond because this took a couple of tries so I named my sh
 help.htb/support/uploads/tickets/ca6c67bddbbfe8f9b06eaa7d15cce9ca.php
 ```
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Another way to get a shell is via a blind SQLI in the application
 
 ### <mark style="color:$primary;">Blind SQLI</mark>
 
-<figure><img src="../../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (23) (1).png" alt=""><figcaption></figcaption></figure>
 
 The above http parameter looks interesting!
 
@@ -219,7 +219,7 @@ if you change it to `and 1=1-- -`  instead the download will proceed as normal
 
 Open up burpsuite intercept the request and save it to a file
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 As much as I love doint SQLI manually, for this machine I had to give in and use sqlmap been stuck on it for to long. To get it working I ran the following command
 
@@ -227,7 +227,7 @@ As much as I love doint SQLI manually, for this machine I had to give in and use
 sqlmap -r ticket_attachment.req --level 5 --risk 3 -p param[] --batch
 ```
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now that we have that injection going, just run `--dump` to dump all the tables
 
@@ -239,7 +239,7 @@ sqlmap -r ticket_attachment.req --level 5 --risk 3 -p param[] --batch --dump
 
 Now skim through the output and you'll come across a table called staff that has some credentials
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 A nicer output of the table below
 
@@ -258,11 +258,11 @@ sqlmap was also able to crack the password hash came out to Welcome1
 
 You are able to use the help user and the Welcome1 as password to ssh into the system
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## <mark style="color:blue;">Privilege Escalation</mark>
 
-<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Googling the kernel will give you a couple of priv esc exploits!&#x20;
 
@@ -270,8 +270,8 @@ Googling the kernel will give you a couple of priv esc exploits!&#x20;
 
 download this to your system and transfer it to the target machine and run it.&#x20;
 
-<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (8) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 You should have a shell as the root user!

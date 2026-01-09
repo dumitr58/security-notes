@@ -4,7 +4,7 @@ icon: ubuntu
 
 # Devvortex - Easy
 
-<figure><img src="../../.gitbook/assets/image (22) (1) (1) (1).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/devvortex"><strong>Devvortex</strong></a></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (22) (1) (1) (1) (1).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/devvortex"><strong>Devvortex</strong></a></p></figcaption></figure>
 
 ## <mark style="color:blue;">Gaining Access</mark>
 
@@ -47,7 +47,7 @@ Nmap scan reveals a redirect let's add it to our `/etc/hosts` file
 
 ### <mark style="color:$primary;">HTTP Port 80 TCP</mark>
 
-<figure><img src="../../.gitbook/assets/image (23) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (23) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Checking out the site it seemed static, since we have a domain name. Let's check for subdomains
 
