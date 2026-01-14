@@ -177,7 +177,7 @@ Picture does not correspond because this took a couple of tries so I named my sh
 help.htb/support/uploads/tickets/ca6c67bddbbfe8f9b06eaa7d15cce9ca.php
 ```
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Another way to get a shell is via a blind SQLI in the application
 
@@ -219,7 +219,7 @@ if you change it to `and 1=1-- -`  instead the download will proceed as normal
 
 Open up burpsuite intercept the request and save it to a file
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 As much as I love doint SQLI manually, for this machine I had to give in and use sqlmap been stuck on it for to long. To get it working I ran the following command
 
@@ -227,7 +227,7 @@ As much as I love doint SQLI manually, for this machine I had to give in and use
 sqlmap -r ticket_attachment.req --level 5 --risk 3 -p param[] --batch
 ```
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now that we have that injection going, just run `--dump` to dump all the tables
 
@@ -239,7 +239,7 @@ sqlmap -r ticket_attachment.req --level 5 --risk 3 -p param[] --batch --dump
 
 Now skim through the output and you'll come across a table called staff that has some credentials
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 A nicer output of the table below
 
@@ -258,11 +258,11 @@ sqlmap was also able to crack the password hash came out to Welcome1
 
 You are able to use the help user and the Welcome1 as password to ssh into the system
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## <mark style="color:blue;">Privilege Escalation</mark>
 
-<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Googling the kernel will give you a couple of priv esc exploits!&#x20;
 
