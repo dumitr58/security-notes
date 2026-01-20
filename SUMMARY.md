@@ -41,6 +41,7 @@
     * [LinkVortex - Easy](hack-the-box/linux/linkvortex-easy.md)
     * [Magic - Medium](hack-the-box/linux/magic-medium.md)
     * [Mentor - Medium](hack-the-box/linux/mentor-medium.md)
+    * [Networked - Easy](hack-the-box/linux/networked-easy.md)
     * [Soccer - Easy](hack-the-box/linux/soccer-easy.md)
     * [UpDown - Medium](hack-the-box/linux/updown-medium.md)
   * [Windows](hack-the-box/windows/README.md)
