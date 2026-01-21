@@ -177,7 +177,7 @@ We got a shell as the puma user
 
 ### <mark style="color:blue;">Shell as puma</mark>
 
-#### <mark style="color:$primary;">Manual Enumeration</mark>
+#### <mark style="color:$primary;">SUDO systemctl → spawns pager (less) → shell escape</mark>
 
 <figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
 
