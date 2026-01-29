@@ -43,6 +43,7 @@
     * [Mentor - Medium](hack-the-box/linux/mentor-medium.md)
     * [Networked - Easy](hack-the-box/linux/networked-easy.md)
     * [Nibbles - Easy](hack-the-box/linux/nibbles-easy.md)
+    * [Nineveh - Medium](hack-the-box/linux/nineveh-medium.md)
     * [Sau - Easy](hack-the-box/linux/sau-easy.md)
     * [Soccer - Easy](hack-the-box/linux/soccer-easy.md)
     * [UpDown - Medium](hack-the-box/linux/updown-medium.md)

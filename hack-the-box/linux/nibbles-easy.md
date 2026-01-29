@@ -4,6 +4,8 @@ icon: ubuntu
 
 # Nibbles - Easy
 
+<figure><img src="../../.gitbook/assets/image (3180).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/nibbles"><strong>Nibbles</strong></a></p></figcaption></figure>
+
 ## <mark style="color:$success;">Scanning & Enumeration</mark>
 
 {% code title="Nmap TCP" %}
