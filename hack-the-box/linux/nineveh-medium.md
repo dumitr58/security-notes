@@ -244,7 +244,7 @@ Our nmap scan however didn’t reveal an open SSH port!
 
 <figure><img src="../../.gitbook/assets/image (3162).png" alt=""><figcaption></figcaption></figure>
 
-running netstat reveals SSH on port 20 is active and listening!
+running netstat reveals SSH on port 22 is active and listening!
 
 I'll investigate for any suspicious process running in the background
 
