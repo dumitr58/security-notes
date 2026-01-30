@@ -62,17 +62,17 @@ Apache Front End Webserver hosted on Ubuntu
 
 #### <mark style="color:$primary;">Site</mark>
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:$primary;">Site Source</mark>
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The Site source reveals an interesting comment
 
 #### <mark style="color:$primary;">/nibbleblog/</mark>
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 The site is running PHP
 
@@ -82,25 +82,25 @@ The site is running PHP
 feroxbuster -u http://10.129.5.74/nibbleblog/ -x php -o ferox.txt
 ```
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 Directory busting reveals admin login!
 
 #### <mark style="color:$primary;">/admin.php</mark>
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 A quick google search for default admin credentials for nibbleblog
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 We were able to login with the discovered admin credentials
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 in the Settings menu at the bottom of the page there is a version available
 
-<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 There is a File Upload RCE available for this version. I found a POC on github
 
@@ -122,7 +122,7 @@ python3 nibbleblog_4.0.3.py -t http://10.129.5.74/nibbleblog/admin.php -u admin 
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 we know the exploit is working an nc is on the machine let's get a shell
 
@@ -134,7 +134,7 @@ python3 nibbleblog_4.0.3.py -t http://10.129.5.74/nibbleblog/admin.php -u admin 
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 We managed to get a shell as nibbler!
 
@@ -142,7 +142,7 @@ We managed to get a shell as nibbler!
 
 ### <mark style="color:blue;">Manul Enumeration</mark>
 
-<figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 nibbler can run a script with root privileges let's check it out
 

