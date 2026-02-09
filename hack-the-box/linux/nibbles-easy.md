@@ -66,13 +66,13 @@ Apache Front End Webserver hosted on Ubuntu
 
 #### <mark style="color:$primary;">Site Source</mark>
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The Site source reveals an interesting comment
 
 #### <mark style="color:$primary;">/nibbleblog/</mark>
 
-<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The site is running PHP
 

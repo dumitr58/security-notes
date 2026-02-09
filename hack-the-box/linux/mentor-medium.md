@@ -164,7 +164,7 @@ Werkzeug is:
 
 #### <mark style="color:$primary;">Website</mark>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:$primary;">Subdomain Enumeration</mark>
 
@@ -174,13 +174,13 @@ wfuzz -c -f sub-fighter -w ~/tools/SecLists/Discovery/DNS/subdomains-top1million
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 A Subdomain Enumeration reveals an `api` subdomain. I'll add it to my hosts file
 
 When visiting it it reveals nothing
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:$primary;">Directory busting on api.mentorquotes.htb</mark>
 
@@ -216,7 +216,7 @@ Let's grab a token from the `/auth/login` endpoint.
 
 Execute, and you will receive an authentication token
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="color:yellow;">**token**</mark>
 
@@ -226,11 +226,11 @@ the token itself does not seem to store any interesting information.
 
 Let's see what we can access with this token, I'll try the users endpoint
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Insert the token you were given and than click on execute
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We got a 422 error parameter abuse? It seems the application is not attaching the Authoirzation header. I am going to send the request via burpsuite and see if we get the same response
 

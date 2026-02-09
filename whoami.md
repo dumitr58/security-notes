@@ -10,7 +10,7 @@ Curiosity driven since age 9, reverse-engineering home computers, breaking thing
 
 First live exploit: SQL injection on a school team's built login form during a class demo. Dumped the full MySQL database mid presentation. No one saw it coming, including the target
 
-Hands on with real labs and real targets HTB, Proving Grounds, THM. Focused on web app exploitation, Active Directory attacks, privilege escalation, buffer overflows, and post-exploitation. Anything exploitable gets explored.
+Hands on with real labs and real targets HTB, Proving Grounds, THM, Home Labs. Focused on web app exploitation, Active Directory attacks, privilege escalation, buffer overflows, and post-exploitation. Anything exploitable gets explored.
 
 Studied toward OSCP through Offensive Security Labs, coursework, months of hands-on experience documented in 200+ writeups
 
@@ -22,7 +22,7 @@ Break things! Understand them! Get better!
 
 * Rowan University - Bachelor of Science in Computer Science \[summa cum laude] - 2020
 * Fluent in English and Romanian
-* Tinkerer: smart mirror, Pwnagotchi Wi‑Fi sniffer, custom home servers and IoT projects
+* Tinkerer: smart mirror, Pwnagotchi Wi‑Fi sniffer, Chasing your tail, custom home servers and IoT projects
 * UI/UX designer who enjoys creating custom clothing and mousepad designs
 
 ## <mark style="color:$primary;">Portfolio / Code</mark>
@@ -35,10 +35,6 @@ My brand
 
 {% embed url="https://deimosgear.com/" %}
 
-First Resume Website made in college using React
-
-{% embed url="https://rd-resume.web.app/about" %}
-
 Old UI/UX Portfolio
 
 {% embed url="https://rd-portfolio-f2eb0a.webflow.io/" %}
@@ -48,10 +44,6 @@ Old UI/UX Portfolio
 ### Email
 
 {% embed url="https://mailhide.io/e/bcsQpbaC" %}
-
-### Linkedin
-
-{% embed url="https://www.linkedin.com/in/robert-dumitrescu-95844b1aa/" %}
 
 ## <mark style="color:$primary;">Disclaimer</mark>
 

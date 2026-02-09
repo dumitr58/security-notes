@@ -288,7 +288,7 @@ This says I can open SSH by hitting 571, 290, and then 911 with syns, all within
 knock -v 10.129.6.46 571 290 911 -d 500
 ```
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 Afterward, I'll use the private RSA key discovered in the png file earlier to establish an SSH connection.
 
@@ -336,11 +336,11 @@ Checking for folders owned by our user
 find / -type d -user amrois 2>/dev/null
 ```
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Found an interesting folder owned by amrois
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 

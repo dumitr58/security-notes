@@ -248,7 +248,7 @@ certipy-ad req -ca manager-DC01-CA -target dc01.manager.htb -template SubCA -upn
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 This fails, but it saves the private key involved. Then, using the Manage CA and Manage Certificates privileges, I’ll use the ca subcommand to issue the request:
 

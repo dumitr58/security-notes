@@ -86,13 +86,13 @@ The HTTP response headers don't say much, the nmap scan did say the website was 
 feroxbuster -u http://10.129.229.26:55555
 ```
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Again nothing that catches our eye yet
 
 #### <mark style="color:$primary;">Site</mark>
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The footer of the home page reveals a version for the software
 

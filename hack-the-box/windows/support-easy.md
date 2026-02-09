@@ -75,7 +75,7 @@ nmap scan reveals the domain support.htb. I'll add it to my hosts file
 netexec smb support.htb -u guest -p '' --shares
 ```
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 smb reveals an interesting share we have read access to. Let's take a look at it&#x20;
 
@@ -83,13 +83,13 @@ smb reveals an interesting share we have read access to. Let's take a look at it
 smbclient \\\\support.htb\\support-tools -N
 ```
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Most of these are default support tools. The one that stands out is UserInfo.exe.zip. I'll download it to my machine and take a look at it
 
 ### <mark style="color:$primary;">UserInfo.exe</mark>
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 I'll unzip it into a folder and take a look at the .exe file
 
