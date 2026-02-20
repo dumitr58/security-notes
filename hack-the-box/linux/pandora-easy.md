@@ -313,6 +313,10 @@ Because there’s no path given for `tar`, it will use the current user’s `PAT
 
 I’ll work from `/dev/shm`, and add that to the current user’s `PATH`:
 
+```shellscript
+export PATH=/dev/shm:$PATH
+```
+
 <figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 Now the first place it will look for `tar` is `/dev/shm`.
