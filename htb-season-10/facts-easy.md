@@ -4,7 +4,7 @@ icon: ubuntu
 
 # Facts - Easy
 
-<figure><img src="../.gitbook/assets/image (2).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/facts"><strong>Facts</strong></a></p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/facts"><strong>Facts</strong></a></p></figcaption></figure>
 
 ## <mark style="color:$success;">Scanning & Enumeration</mark>
 

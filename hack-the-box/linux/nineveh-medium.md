@@ -288,7 +288,7 @@ This says I can open SSH by hitting 571, 290, and then 911 with syns, all within
 knock -v 10.129.6.46 571 290 911 -d 500
 ```
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 Afterward, I'll use the private RSA key discovered in the png file earlier to establish an SSH connection.
 
@@ -336,29 +336,29 @@ Checking for folders owned by our user
 find / -type d -user amrois 2>/dev/null
 ```
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Found an interesting folder owned by amrois
 
-<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 It seems a scheduled task is running in the background and creating reports
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 The reports shows a scan for changes to common executables and for odd files. I'll upload and run pspy to check for running processes
 
 ### <mark style="color:blue;">PSPy64</mark>
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 Every minute, there are many processes running most of them referencing `/usr/bin/chkrootkit`. [chkrootkit](http://www.chkrootkit.org/) is a tool that will check a host for for signs of a rootkit.
 
 ### <mark style="color:blue;">chrootkit Privesc</mark>
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 Searchsploit reveals a local privesc for chkrootkit&#x20;
 
@@ -374,11 +374,11 @@ echo -e '#!/bin/bash\n\nchmod +s /bin/bash' > update
 chmod +x update
 ```
 
-<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 The next time `chkroot` runs it will set the SUID to bash
 
-<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 to escalate to root now will simply run&#x20;
 
@@ -386,4 +386,4 @@ to escalate to root now will simply run&#x20;
 /bin/bash -p
 ```
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>

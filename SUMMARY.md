@@ -50,6 +50,7 @@
     * [Soccer - Easy](hack-the-box/linux/soccer-easy.md)
     * [UpDown - Medium](hack-the-box/linux/updown-medium.md)
     * [OpenAdmin - Easy](hack-the-box/linux/openadmin-easy.md)
+    * [Pandora - Easy](hack-the-box/linux/pandora-easy.md)
   * [Windows](hack-the-box/windows/README.md)
     * [Access - Easy](hack-the-box/windows/access-easy.md)
     * [Aero - Medium - TBF](hack-the-box/windows/aero-medium-tbf.md)

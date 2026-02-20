@@ -4,7 +4,7 @@ icon: ubuntu
 
 # Devvortex - Easy
 
-<figure><img src="../../.gitbook/assets/image (22) (1) (1) (1) (1).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/devvortex"><strong>Devvortex</strong></a></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (22) (1) (1) (1) (1) (1).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/devvortex"><strong>Devvortex</strong></a></p></figcaption></figure>
 
 ## <mark style="color:blue;">Gaining Access</mark>
 
@@ -47,7 +47,7 @@ Nmap scan reveals a redirect let's add it to our `/etc/hosts` file
 
 ### <mark style="color:$primary;">HTTP Port 80 TCP</mark>
 
-<figure><img src="../../.gitbook/assets/image (23) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (23) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Checking out the site it seemed static, since we have a domain name. Let's check for subdomains
 
@@ -59,7 +59,7 @@ wfuzz -c -w ~/tools/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -u 'h
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (24) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (24) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Discovered a new subdomain, I'll add it to my hosts file and check it out
 
@@ -67,7 +67,7 @@ Discovered a new subdomain, I'll add it to my hosts file and check it out
 10.10.11.242	devvortex.htb dev.devvortex.htb
 ```
 
-<figure><img src="../../.gitbook/assets/image (25) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (25) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Another static site
 
@@ -77,11 +77,11 @@ Another static site
 dirsearch -u http://dev.devvortex.htb
 ```
 
-<figure><img src="../../.gitbook/assets/image (26) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (26) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Directory busting reveals an interesting endpoint!
 
-<figure><img src="../../.gitbook/assets/image (28) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (28) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 There is an instance of Joomla hosted here! Default credentials do not seem to work
 
@@ -91,11 +91,11 @@ I managed to find the version location of Joomla on Github.
 
 Let's check out this website's version
 
-<figure><img src="../../.gitbook/assets/image (29) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (29) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now that we have a version let's look for an exploit
 
-<figure><img src="../../.gitbook/assets/image (32) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (32) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We found one close enough to our version. Let's take a look at it.&#x20;
 

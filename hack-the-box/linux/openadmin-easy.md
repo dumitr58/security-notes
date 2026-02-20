@@ -4,7 +4,7 @@ icon: ubuntu
 
 # OpenAdmin - Easy
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/openadmin"><strong>OpenAdmin</strong></a></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (32).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/openadmin"><strong>OpenAdmin</strong></a></p></figcaption></figure>
 
 ## <mark style="color:$success;">Scanning & Enumeration</mark>
 
@@ -46,7 +46,7 @@ HOP RTT      ADDRESS
 feroxbuster -u http://10.129.6.147/ -n
 ```
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Found 3 interesting endpoints
 
