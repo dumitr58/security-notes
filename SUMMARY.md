@@ -43,6 +43,7 @@
     * [LinkVortex - Easy](hack-the-box/linux/linkvortex-easy.md)
     * [Magic - Medium](hack-the-box/linux/magic-medium.md)
     * [Mentor - Medium](hack-the-box/linux/mentor-medium.md)
+    * [Monitored - Medium](hack-the-box/linux/monitored-medium.md)
     * [Networked - Easy](hack-the-box/linux/networked-easy.md)
     * [Nibbles - Easy](hack-the-box/linux/nibbles-easy.md)
     * [Nineveh - Medium](hack-the-box/linux/nineveh-medium.md)
