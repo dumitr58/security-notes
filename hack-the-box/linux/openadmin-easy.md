@@ -46,7 +46,7 @@ HOP RTT      ADDRESS
 feroxbuster -u http://10.129.6.147/ -n
 ```
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Found 3 interesting endpoints
 

