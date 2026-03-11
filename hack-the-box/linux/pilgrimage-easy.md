@@ -260,7 +260,7 @@ emily:abigchonkyboi123
 #### <mark style="color:$primary;">Manual Enumeration</mark>
 
 {% code overflow="wrap" %}
-```
+```shellscript
 ps aux
 ```
 {% endcode %}
