@@ -336,7 +336,7 @@ Checking for folders owned by our user
 find / -type d -user amrois 2>/dev/null
 ```
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Found an interesting folder owned by amrois
 

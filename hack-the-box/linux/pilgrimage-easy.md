@@ -288,9 +288,19 @@ done
 ```
 {% endcode %}
 
-The script uses **Binwalk**, a tool that searches binary images for embedded files and executable code to analyze uploaded images. If the image is not a permitted file type, the script removes it from the server.&#x20;
+The bash script runs:
 
-The important aspect is that the program has **root permissions**. Let’s examine Binwalk's version for potential vulnerabilities.
+{% code overflow="wrap" %}
+```shellscript
+/usr/bin/inotifywait -m -e create /var/www/pilgrimage.htb/shrunk/
+```
+{% endcode %}
+
+**Meaning** **->** Monitor directory `/var/www/pilgrimage.htb/shrunk/` for new files
+
+The script monitors the upload directory and runs **binwalk** on any new files to check for embedded data or executables. If it detects a banned file type, it deletes the file.&#x20;
+
+Since the script runs as **root**, any vulnerability in binwalk could potentially lead to command execution as root, so checking the binwalk version for known CVEs is important.
 
 <figure><img src="../../.gitbook/assets/image (3292).png" alt=""><figcaption></figcaption></figure>
 
@@ -299,6 +309,11 @@ We got a version
 Searchsploit reveals an RCE for our exact version
 
 <figure><img src="../../.gitbook/assets/image (3293).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+We have full permission to write to the directory\
+Since **we can write to that directory**, you control the file that **root feeds into binwalk**.
 
 ### <mark style="color:blue;">Binwalk v2.3.2 RCE - CVE-2022-4519</mark>
 

@@ -66,7 +66,7 @@ Apache Front End Webserver hosted on Ubuntu
 
 #### <mark style="color:$primary;">Site Source</mark>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The Site source reveals an interesting comment
 

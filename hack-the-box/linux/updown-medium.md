@@ -426,7 +426,7 @@ __import__('os').system('bash')
 
 I'll grab the ssh key for ease of access and a better shell
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```shellscript
 vi developer_id_rsa

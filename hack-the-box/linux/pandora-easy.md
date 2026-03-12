@@ -254,7 +254,7 @@ python3 pandorafms_7.44.py -t http://pandora.panda.htb:8000/ -c g4e01qdgk36mfdh9
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:blue;">Shell as matt</mark>
 
