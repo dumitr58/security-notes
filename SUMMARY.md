@@ -50,6 +50,7 @@
     * [OpenAdmin - Easy](hack-the-box/linux/openadmin-easy.md)
     * [Pandora - Easy](hack-the-box/linux/pandora-easy.md)
     * [Pilgrimage - Easy](hack-the-box/linux/pilgrimage-easy.md)
+    * [Poison - Medium](hack-the-box/linux/poison-medium.md)
     * [Sau - Easy](hack-the-box/linux/sau-easy.md)
     * [Soccer - Easy](hack-the-box/linux/soccer-easy.md)
     * [UpDown - Medium](hack-the-box/linux/updown-medium.md)
