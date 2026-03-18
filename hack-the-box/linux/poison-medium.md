@@ -4,7 +4,7 @@ icon: ubuntu
 
 # Poison - Medium
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/poison"><strong>Poison</strong></a></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/poison"><strong>Poison</strong></a></p></figcaption></figure>
 
 ## <mark style="color:$success;">Scanning & Enumeration</mark>
 
@@ -71,13 +71,13 @@ An apache server hosting a site whose backed is written in PHP.
 
 #### <mark style="color:$primary;">Website</mark>
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 I put in listfiles.php and it reveals and interesting text file let's check it out
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 It reveals a password that has been base64 encoded 13 times. Let's decode it using some command line fu
 
@@ -87,7 +87,7 @@ data=$(cat pwd.b64)
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 Let's base64 decoded it 13 times and get our password
 
@@ -97,9 +97,9 @@ for i in $(seq 1 13); do data=$(echo "$data" | tr -d ' \n\r' | base64 -d 2>/dev/
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 Nice we have a password now we need a user!
 
@@ -107,7 +107,7 @@ This website is one big LFI
 
 ### <mark style="color:blue;">LFI</mark>
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 We got a couple of users, but by the looks of it our password might match with charix
 
@@ -125,7 +125,7 @@ ssh charix@10.129.1.254
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## <mark style="color:$success;">Post Exploitation</mark>
 
@@ -133,7 +133,7 @@ ssh charix@10.129.1.254
 
 #### <mark style="color:$primary;">Manual Enumeration</mark>
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 There is an interesting zip file in charix's home directory password protected. I'll download it to my machine&#x20;
 
