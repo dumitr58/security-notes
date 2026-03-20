@@ -52,6 +52,7 @@
     * [Pilgrimage - Easy](hack-the-box/linux/pilgrimage-easy.md)
     * [Poison - Medium](hack-the-box/linux/poison-medium.md)
     * [Popcorn - Medium](hack-the-box/linux/popcorn-medium.md)
+    * [Precious - Easy](hack-the-box/linux/precious-easy.md)
     * [Sau - Easy](hack-the-box/linux/sau-easy.md)
     * [Soccer - Easy](hack-the-box/linux/soccer-easy.md)
     * [UpDown - Medium](hack-the-box/linux/updown-medium.md)
