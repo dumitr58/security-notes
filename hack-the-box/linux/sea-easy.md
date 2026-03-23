@@ -1,3 +1,7 @@
+---
+icon: ubuntu
+---
+
 # Sea - Easy
 
 <figure><img src="../../.gitbook/assets/image (3320).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/sea"><strong>Sea</strong></a></p></figcaption></figure>
