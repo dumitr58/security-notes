@@ -220,7 +220,7 @@ besides root there is another user on this box.
 
 <figure><img src="../../.gitbook/assets/image (3351).png" alt=""><figcaption></figcaption></figure>
 
-he web server proxies any request that uses the `soc-player.soccer.htb` domain to the internal website running on port `3000` all we need to do is to add the `soc-player.soccer.htb` domain name to our `hosts`  file
+The web server proxies any request that uses the `soc-player.soccer.htb` domain to the internal website running on port `3000` all we need to do is to add the `soc-player.soccer.htb` domain name to our `hosts`  file
 
 {% code title="/etc/hosts" overflow="wrap" expandable="true" %}
 ```shellscript
