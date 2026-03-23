@@ -57,6 +57,7 @@
     * [Soccer - Easy](hack-the-box/linux/soccer-easy.md)
     * [UpDown - Medium](hack-the-box/linux/updown-medium.md)
     * [Usage - Easyn](hack-the-box/linux/usage-easyn.md)
+    * [Sea - Easy](hack-the-box/linux/sea-easy.md)
   * [Windows](hack-the-box/windows/README.md)
     * [Access - Easy](hack-the-box/windows/access-easy.md)
     * [Aero - Medium - TBF](hack-the-box/windows/aero-medium-tbf.md)
