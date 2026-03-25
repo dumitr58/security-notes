@@ -57,6 +57,7 @@
     * [Sea - Easy](hack-the-box/linux/sea-easy.md)
     * [Soccer - Easy](hack-the-box/linux/soccer-easy.md)
     * [SolidState - Medium](hack-the-box/linux/solidstate-medium.md)
+    * [Sunday - Easy](hack-the-box/linux/sunday-easy.md)
     * [UpDown - Medium](hack-the-box/linux/updown-medium.md)
     * [Usage - Easyn](hack-the-box/linux/usage-easyn.md)
   * [Windows](hack-the-box/windows/README.md)
