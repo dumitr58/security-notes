@@ -103,11 +103,11 @@ jq -r '.responses[] | .url?' ferox-http_swagshop_htb_-1774485440.state | grep --
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
 
 I found one let's check it out
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Nice we found the admin panel. Default creds do not work here
 
@@ -129,17 +129,17 @@ The script will create an admin account with username forme and password forme
 
 We have to edit the exploit to fit our target.
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 !!!Note -> Copy only the code and remove the comments otherwise you will get this erro
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 Nice it worked, and we are able to login
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:blue;">Reverse Shell via Product Upload</mark>
 
@@ -155,29 +155,29 @@ Nice it worked, and we are able to login
 * Price: `0.00`
 * Allowed File Extensions: `php`
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 After saving, I returned to the product page and uploaded a **PHP reverse shell from:**
 
 [https://www.revshells.com/](https://www.revshells.com/) -> Linux -> PHP Pentest Monkey -> saved as shell.php
 
-<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 After uploading your php shell click "add to cart"
 
 We found the `/media` file in directory busting and I remember seeing the custom options
 
-<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 my exploit is living there
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 have a listener ready on your desired port than click on php script, you will receive a shell back
 
-<figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## <mark style="color:$success;">Post Exploitation</mark>
 
@@ -185,7 +185,7 @@ have a listener ready on your desired port than click on php script, you will re
 
 ### <mark style="color:$primary;">Manual Enumeration</mark>
 
-<figure><img src="../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (12) (1).png" alt=""><figcaption></figcaption></figure>
 
 Interestingly enough the www-data user can run vi as the root user on any files in `/var/www/html/*`
 
@@ -193,7 +193,7 @@ Interestingly enough the www-data user can run vi as the root user on any files 
 
 {% embed url="https://gtfobins.org/gtfobins/vi/#shell" %}
 
-<figure><img src="../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
 
 * Open a random file in `/var/www/html` using vi with the sudo privileges
 
@@ -211,7 +211,7 @@ sudo /usr/bin/vi /var/www/html/privesc
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
 
 it will drop you into a shell as the root user.
 

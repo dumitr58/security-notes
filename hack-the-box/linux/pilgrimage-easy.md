@@ -310,7 +310,7 @@ Searchsploit reveals an RCE for our exact version
 
 <figure><img src="../../.gitbook/assets/image (3293).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (21) (1).png" alt=""><figcaption></figcaption></figure>
 
 We have full permission to write to the directory\
 Since **we can write to that directory**, you control the file that **root feeds into binwalk**.

