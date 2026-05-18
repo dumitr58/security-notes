@@ -4,51 +4,37 @@ icon: user-hoodie
 
 # whoami
 
-Security researcher, Builder, Breaker
+### <mark style="color:$primary;">**Security researcher | Pentesting Methodology Portfolio**</mark>
 
-Curiosity driven since age 9, reverse-engineering home computers, breaking things just to see why the broke. Obsession turned profession.
+This repository serves as a centralized technical notebook documenting my practical approach to offensive security. The documentation here focuses on real-world environment testing, including network penetration testing, Active Directory infrastructure attacks, privilege escalation, and vulnerability analysis.
 
-First live exploit: SQL injection on a school team's built login form during a class demo. Dumped the full MySQL database mid presentation. No one saw it coming, including the target
+* **Background**: Entirely self-taught in foundational technology and offensive security methodologies. Built a technical baseline independently, culminating in a B.S. in Computer Science (_summa cum laude_) and earning the Offensive Security Certified Professional (OSCP+) credential.
+* **The Environment**: Hands-on execution across real-world laboratory networks, including Hack The Box, OffSec Proving Grounds, and isolated enterprise homelabs.
+* **The Objective**: Documenting the process of identifying critical security misconfigurations, chaining exploits from initial access to full domain dominance, and translating those technical steps into clear remediation strategies.
 
-Hands on with real labs and real targets HTB, Proving Grounds, THM, Home Labs. Focused on web app exploitation, Active Directory attacks, privilege escalation, buffer overflows, and post-exploitation. Anything exploitable gets explored.
+> _Break things. Understand the underlying mechanics. Document the fix._
 
-Studied toward OSCP through Offensive Security Labs, coursework, months of hands-on experience documented in 200+ writeups
+### <mark style="color:$primary;">Short Bio</mark>
 
-This notebook documents the grind, offensive security techniques, failed exploits, successful breaches, writeups, tools and lessons learned the hard way. Inspired by the community, built to give back!
+* **🎓** **Education** - B.S. in Computer Science | Rowan University (GPA: 4.0, _summa cum laude_)
+* **🌐 Languages**: Fluent in English and Romanian
+* **🛠️ Hardware & Tinkering**: Custom low-power home servers, Raspberry Pi Pico HID reverse shells, Pwnagotchi automated Wi-Fi auditing nodes, and private network segmentation pipelines.
+* 🎨 **Design & Layout**: UI/UX interface design, tech-inspired product architecture, and front-end layout optimization.
 
-Break things! Understand them! Get better!
-
-## <mark style="color:$primary;">Short Bio</mark>
-
-* Rowan University - Bachelor of Science in Computer Science \[summa cum laude] - 2020
-* Fluent in English and Romanian
-* Tinkerer: smart mirror, Pwnagotchi Wi‑Fi sniffer, Chasing your tail, custom home servers and IoT projects
-* UI/UX designer who enjoys creating custom clothing and mousepad designs
-
-## <mark style="color:$primary;">Portfolio / Code</mark>
+### <mark style="color:$primary;">Portfolio & Repositories</mark>
 
 {% embed url="https://github.com/dumitr58" %}
 
-## <mark style="color:$primary;">Websites</mark>
-
-My brand
-
 {% embed url="https://deimosgear.com/" %}
-
-Old UI/UX Portfolio
 
 {% embed url="https://rd-portfolio-f2eb0a.webflow.io/" %}
 
-## <mark style="color:$primary;">Contact me</mark>
+### <mark style="color:$primary;">Contact me</mark>
 
 ### Email
 
 {% embed url="https://mailhide.io/e/bcsQpbaC" %}
 
-## <mark style="color:$primary;">Disclaimer</mark>
+### <mark style="color:$primary;">Disclaimer</mark>
 
-I'm not claiming to be a security expert. I'm just someone who's passionate about cybersecurity and constantly trying to learn and improve.&#x20;
-
-Everything shared here is intended for **educational purposes** only. I do not condone illegal activities or the misuse of any tools, techniques, or concepts discussed.&#x20;
-
-What you choose to do with this knowledge is entirely your responsibility. I'm not exactly dropping zero days here🤣
+The documentation, write-ups, and proof-of-concept tools shared throughout this repository are intended strictly for **educational, authorized penetration testing, and defensive research purposes only**. I do not condone or support unauthorized access, malicious exploitation, or the illegal misuse of any techniques discussed herein. All activities demonstrated were performed within isolated, compliant laboratory networks or explicitly authorized environments.

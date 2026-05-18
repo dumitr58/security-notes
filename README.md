@@ -6,7 +6,9 @@ icon: paw-claws
 
 ## <mark style="color:$primary;">What's This?</mark>
 
-This is where I document my journey in cybersecurity from Hack The Box and Proving Grounds writeups to bug bounty finds and personal insights on all things infosec.
+This repository serves as a centralized technical knowledge base and methodology portfolio. It documents verified penetration testing methodologies, systematic machine breakdowns across Hack The Box and OffSec Proving Grounds, network infrastructure research, and defensive remediation strategies.
+
+The objective of these documents is to translate practical offensive security exploitation into structured, actionable security insights.
 
 ## <mark style="color:$primary;">Content</mark>
 
@@ -17,8 +19,6 @@ This is where I document my journey in cybersecurity from Hack The Box and Provi
 {% endcontent-ref %}
 
 ## <mark style="color:$primary;">Writeups</mark>
-
-Detailed writeups for Hack The Box and Proving Grounds machines
 
 #### HTB
 
@@ -34,8 +34,4 @@ Detailed writeups for Hack The Box and Proving Grounds machines
 
 ## <mark style="color:$primary;">Disclaimer</mark>
 
-I'm not claiming to be a security expert. I'm just someone who's passionate about cybersecurity and constantly trying to learn and improve.&#x20;
-
-Everything shared here is intended for **educational purposes** only. I do not condone illegal activities or the misuse of any tools, techniques, or concepts discussed.&#x20;
-
-What you choose to do with this knowledge is entirely your responsibility. I'm not exactly dropping zero days here🤣
+The documentation, write-ups, and proof-of-concept tools shared throughout this repository are intended strictly for **educational, authorized penetration testing, and defensive research purposes only**. I do not condone or support unauthorized access, malicious exploitation, or the illegal misuse of any techniques discussed herein. All activities demonstrated were performed within isolated, compliant laboratory networks or explicitly authorized environments.
