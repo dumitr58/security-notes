@@ -17,17 +17,24 @@ This repository serves as a centralized technical notebook documenting my practi
 ### <mark style="color:$primary;">Short Bio</mark>
 
 * **🎓** **Education** - B.S. in Computer Science | Rowan University (GPA: 4.0, _summa cum laude_)
+* **🛡️ Certifications**: Offensive Security Certified Professional (OSCP+)
 * **🌐 Languages**: Fluent in English and Romanian
 * **🛠️ Hardware & Tinkering**: Custom low-power home servers, Raspberry Pi Pico HID reverse shells, Pwnagotchi automated Wi-Fi auditing nodes, and private network segmentation pipelines.
 * 🎨 **Design & Layout**: UI/UX interface design, tech-inspired product architecture, and front-end layout optimization.
 
 ### <mark style="color:$primary;">Portfolio & Repositories</mark>
 
+**Verified Professional Credentials**
+
+{% embed url="https://credentials.offsec.com/1dbcab21-7817-4ee5-b73a-589d9d2c4ad4#acc.dvPRu9qa" %}
+
+**GitHub Code Repository**
+
 {% embed url="https://github.com/dumitr58" %}
 
-{% embed url="https://deimosgear.com/" %}
+**E-Commerce Design Brand**
 
-{% embed url="https://rd-portfolio-f2eb0a.webflow.io/" %}
+{% embed url="https://deimosgear.com/" %}
 
 ### <mark style="color:$primary;">Contact me</mark>
 
