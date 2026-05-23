@@ -4,7 +4,7 @@ icon: ubuntu
 
 # Tabby - Easy
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/tabby"><strong>Tabby</strong></a></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (26).png" alt="" width="75"><figcaption><p><a href="https://www.hackthebox.com/machines/tabby"><strong>Tabby</strong></a></p></figcaption></figure>
 
 ## <mark style="color:$success;">Scanning & Enumeration</mark>
 
@@ -50,7 +50,7 @@ The nmap Scan confirms Apache Tomact on port 8080
 
 ### <mark style="color:$primary;">Website</mark>
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The first page exposes some path location as well as a possible list of files. I'll Note it for later
 
@@ -62,11 +62,11 @@ feroxbuster -u http://10.129.13.200:8080/ -n
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 With Directory Busting I was able to uncover some interesting endpoints. However I will need some credentials to move further
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## <mark style="color:blue;">HTTP Port 80 TCP</mark>
 
@@ -81,21 +81,21 @@ Content-Type: text/html; charset=UTF-8
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 I haven't uncovered anything major. We have an Apache Web Server&#x20;
 
 ### <mark style="color:$primary;">Site</mark>
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 While Enumerating the site I saw that when the News Button contains a redirect&#x20;
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 This also shows the site running php and a domain name
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 I'll update my hosts file
 
@@ -105,15 +105,15 @@ I'll update my hosts file
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 Checking the URL there is a possibility for LFI. I will test it
 
-<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 and it works! Remember earlier we discovered a possible users file. Let's check it out!
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 There is a user with a hardcoded password in there! We can also check it via curl
 
@@ -123,7 +123,7 @@ curl http://megahosting.htb/news.php?file=../../../../../usr/share/tomcat9/etc/t
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% code overflow="wrap" expandable="true" %}
 ```shellscript
@@ -133,7 +133,7 @@ tomcat:$3cureP4s5w0rd123!
 
 Now we should be able to login into [http://megahosting.htb:8080/host-manager/html](http://megahosting.htb:8080/host-manager/html)
 
-<figure><img src="../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (12) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:blue;">War Deployment via web service -> RCE</mark>
 
@@ -141,7 +141,7 @@ My next goal was, WAR Deployment → RCE, but deployment is not available on the
 
 If we go back to the `tomcat-users.xml` file we will see that the tomcat user has the manager-script role.
 
-<figure><img src="../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
 
 This allows access to the text-based web service located at `/manager/text`. There’s a list of commands [in the Tomcat docs](http://tomcat.apache.org/tomcat-9.0-doc/manager-howto.html#Supported_Manager_Commands).
 
@@ -153,7 +153,7 @@ curl -u 'tomcat:$3cureP4s5w0rd123!' http://megahosting.htb:8080/manager/text/lis
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
 
 it works! Now that I have access to the manager I can Deploy a Malicious War file
 
@@ -175,7 +175,7 @@ curl -u 'tomcat:$3cureP4s5w0rd123!' http://megahosting.htb:8080/manager/text/dep
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure>
 
 Success!
 
@@ -188,7 +188,7 @@ Command Breakdwon:
 
 Next I'll start a nc listener, and trigger the exploit with: `curl http://megahosting.htb:8080/deimos`
 
-<figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (16) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## <mark style="color:$success;">Post Exploitation</mark>
 
@@ -196,15 +196,15 @@ Next I'll start a nc listener, and trigger the exploit with: `curl http://megaho
 
 ### <mark style="color:$primary;">Manual Enumeration</mark>
 
-<figure><img src="../../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (17) (1).png" alt=""><figcaption></figcaption></figure>
 
 Besides root there is another user on this box. I should check for any possible Credentials on the machine.
 
-<figure><img src="../../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (18) (1).png" alt=""><figcaption></figcaption></figure>
 
 I saw an interesting folder owned by ash!
 
-<figure><img src="../../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (19) (1).png" alt=""><figcaption></figcaption></figure>
 
 Inside there is a backup file! I'll transfer it to my machine using nc
 
@@ -234,7 +234,7 @@ john zip.hash --wordlist=/usr/share/wordlists/rockyou.txt
 ```
 {% endcode %}
 
-<figure><img src="../../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (20) (1).png" alt=""><figcaption></figcaption></figure>
 
 We managed to crack it. Funny enough this password works for ash
 
@@ -246,13 +246,13 @@ ash:admin@it
 
 ### <mark style="color:blue;">Su as ash</mark>
 
-<figure><img src="../../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (21) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:$primary;">Manual Enumeration</mark>
 
 When running the id command we saw that ash was part of an interesting group `lxd`
 
-<figure><img src="../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (22) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:blue;">LXC Exploitation -> privesc root</mark>
 

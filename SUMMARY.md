@@ -62,6 +62,7 @@
     * [UpDown - Medium](hack-the-box/linux/updown-medium.md)
     * [Usage - Easyn](hack-the-box/linux/usage-easyn.md)
     * [Tabby - Easy](hack-the-box/linux/tabby-easy.md)
+    * [TartarSauce - Medium](hack-the-box/linux/tartarsauce-medium.md)
   * [Windows](hack-the-box/windows/README.md)
     * [Access - Easy](hack-the-box/windows/access-easy.md)
     * [Aero - Medium - TBF](hack-the-box/windows/aero-medium-tbf.md)
