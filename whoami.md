@@ -24,17 +24,13 @@ This repository serves as a centralized technical notebook documenting my practi
 
 ### <mark style="color:$primary;">Portfolio & Repositories</mark>
 
-**Verified Professional Credentials**
+**OSCP+ Certificate**
 
 {% embed url="https://credentials.offsec.com/1dbcab21-7817-4ee5-b73a-589d9d2c4ad4#acc.dvPRu9qa" %}
 
 **GitHub Code Repository**
 
 {% embed url="https://github.com/dumitr58" %}
-
-**E-Commerce Design Brand**
-
-{% embed url="https://deimosgear.com/" %}
 
 ### <mark style="color:$primary;">Contact me</mark>
 
