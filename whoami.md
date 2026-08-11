@@ -22,8 +22,6 @@ This repository serves as a centralized technical notebook documenting my practi
 * **🛠️ Hardware & Tinkering**: Custom low-power home servers, Raspberry Pi Pico HID reverse shells, Pwnagotchi automated Wi-Fi auditing nodes, and private network segmentation pipelines.
 * 🎨 **Design & Layout**: UI/UX interface design, tech-inspired product architecture, and front-end layout optimization.
 
-### <mark style="color:$primary;">Portfolio & Repositories</mark>
-
 **OSCP+ Certificate**
 
 {% embed url="https://credentials.offsec.com/1dbcab21-7817-4ee5-b73a-589d9d2c4ad4#acc.dvPRu9qa" %}
