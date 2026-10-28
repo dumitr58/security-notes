@@ -84,6 +84,7 @@
     * [ServMon - Easy](hack-the-box/windows/servmon-easy.md)
     * [StreamIO - Medium](hack-the-box/windows/streamio-medium.md)
     * [Support - Easy](hack-the-box/windows/support-easy.md)
+    * [Control - Hard](hack-the-box/windows/control-hard.md)
 * [Proving Grounds Practice](proving-grounds-practice/README.md)
   * [Active Directory](proving-grounds-practice/active-directory/README.md)
     * [Access - Intermediate](proving-grounds-practice/active-directory/access-intermediate.md)
